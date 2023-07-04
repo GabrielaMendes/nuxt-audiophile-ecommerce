@@ -41,3 +41,7 @@ p {
 .subtitle {
   @apply text-xs text-terracotta uppercase;
 }
+
+.content-container {
+  @apply mx-auto px-6 sm:px-8 max-w-[1200px];
+}
