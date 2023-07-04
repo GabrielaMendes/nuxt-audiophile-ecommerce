@@ -30,6 +30,10 @@ h1 {
 	@apply text-5xl;
 }
 
+p {
+  @apply opacity-50
+}
+
 .overline {
   @apply text-sm text-terracotta uppercase;
 }
