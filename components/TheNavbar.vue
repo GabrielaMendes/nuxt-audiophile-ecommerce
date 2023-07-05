@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-black text-white">
+	<div class="bg-almost-black text-white">
 		<div class="content-container py-8 flex gap-10 justify-between">
 			<button class="lg:hidden">
 				<IconHamburger aria-hidden="true" />
@@ -12,7 +12,7 @@
 			<nav class="flex gap-8 max-lg:hidden">
 				<NuxtLink to="/">Home</NuxtLink>
 				<NuxtLink to="/">Headphones</NuxtLink>
-				<NuxtLink to="/">Speaker</NuxtLink>
+				<NuxtLink to="/">Speakers</NuxtLink>
 				<NuxtLink to="/">Eaphones</NuxtLink>
 			</nav>
 			<button>

@@ -1,5 +1,5 @@
 body {
-	@apply font-body text-base;
+	@apply font-body text-base text-almost-black bg-off-white;
 }
 
 h1,
