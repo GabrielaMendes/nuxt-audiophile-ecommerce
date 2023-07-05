@@ -9,12 +9,7 @@
 				<IconLogo aria-hidden="true" />
         <span class="hidden">audiophile</span>
 			</NuxtLink>
-			<nav class="flex gap-8 max-lg:hidden">
-				<NuxtLink to="/">Home</NuxtLink>
-				<NuxtLink to="/">Headphones</NuxtLink>
-				<NuxtLink to="/">Speakers</NuxtLink>
-				<NuxtLink to="/">Eaphones</NuxtLink>
-			</nav>
+			<NavLinks class="flex gap-8 max-lg:hidden" />
 			<button>
 				<IconCart aria-hidden="true" />
         <span class="hidden">Shopping Cart</span>
@@ -22,9 +17,3 @@
 		</div>
 	</div>
 </template>
-
-<style scoped>
-a {
-	@apply text-xs uppercase hover:text-terracotta transition-colors duration-200;
-}
-</style>

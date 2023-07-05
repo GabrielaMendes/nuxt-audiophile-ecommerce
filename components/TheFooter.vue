@@ -11,12 +11,7 @@
 					<span class="hidden">audiophile</span>
 				</NuxtLink>
 
-				<nav class="flex flex-col gap-4 sm:gap-8 sm:flex-row">
-					<NuxtLink to="/">Home</NuxtLink>
-					<NuxtLink to="/">Headphones</NuxtLink>
-					<NuxtLink to="/">Speakers</NuxtLink>
-					<NuxtLink to="/">Earphones</NuxtLink>
-				</nav>
+				<NavLinks class="flex flex-col gap-4 sm:gap-8 sm:flex-row" />
 			</div>
 
 			<div class="sm:grid sm:grid-cols-2 sm::grid-rows-1 lg:items-center">
@@ -65,9 +60,3 @@
 		</div>
 	</div>
 </template>
-
-<style scoped>
-a {
-	@apply text-xs uppercase hover:text-terracotta transition-colors duration-200;
-}
-</style>
