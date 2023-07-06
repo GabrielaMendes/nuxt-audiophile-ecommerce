@@ -1,27 +1,12 @@
 <script setup>
-import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+import { useDevice } from "../composables/useDevice"
 
-const breakpoints = useBreakpoints(breakpointsTailwind);
-
-const smAndLarger = breakpoints.greaterOrEqual("sm");
-const lgAndLarger = breakpoints.greaterOrEqual("lg");
-
-const device = computed(() => {
-	if (lgAndLarger.value) {
-		return "desktop";
-	}
-
-	if (smAndLarger.value) {
-		return "tablet";
-	}
-
-	return "mobile";
-});
+const { device } = useDevice()
 </script>
 
 <template>
 	<section
-		class="content-container my-40 flex max-lg:flex-col-reverse items-center"
+		class="content-container mb-40 flex max-lg:flex-col-reverse items-center"
 	>
 		<div class="flex-1 sm:max-lg:px-16 lg:pr-32 max-lg:text-center">
 			<h2 class="mb-8 max-sm:mt-12 sm:max-lg:mt-16">
