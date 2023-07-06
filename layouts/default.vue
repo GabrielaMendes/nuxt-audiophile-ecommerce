@@ -17,7 +17,7 @@
 </template>
 
 <style scoped>
-header :slotted(div) {
+header :slotted(.header) {
   @apply border-t-[1px] border-white border-opacity-20
 }
 </style>
