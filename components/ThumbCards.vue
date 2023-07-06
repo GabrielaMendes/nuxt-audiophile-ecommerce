@@ -16,7 +16,7 @@ const thumbs = [
 </script>
 
 <template>
-	<div class="flex max-sm:flex-col gap-8 w-full">
+	<div class="flex max-sm:flex-col gap-[5.5rem] sm:gap-3 lg:gap-8 w-full">
 		<div
 			v-for="thumb in thumbs"
 			:key="thumb.name"
