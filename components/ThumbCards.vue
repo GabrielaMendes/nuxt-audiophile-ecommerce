@@ -1,0 +1,47 @@
+<script setup>
+const thumbs = [
+	{
+		name: "Headphones",
+		image: "/images/shared/desktop/image-category-thumbnail-headphones.png",
+	},
+	{
+		name: "Speakers",
+		image: "/images/shared/desktop/image-category-thumbnail-speakers.png",
+	},
+	{
+		name: "Earphones",
+		image: "/images/shared/desktop/image-category-thumbnail-earphones.png",
+	},
+];
+</script>
+
+<template>
+	<div class="flex max-sm:flex-col gap-8 w-full">
+		<div
+			v-for="thumb in thumbs"
+			:key="thumb.name"
+			class="group cursor-pointer bg-very-light-gray pb-6 rounded-md text-center flex-1"
+		>
+			<img
+				:src="thumb.image"
+				:alt="`${thumb.name} thumbnail`"
+				class="w-56 mx-auto"
+        :class="{
+          '-mt-20': thumb.name === 'Headphones',
+          '-mt-[4.5rem]': thumb.name === 'Speakers',
+          '-mt-16': thumb.name === 'Earphones',
+        }"
+			/>
+			<h6 class="-mt-3 mb-2">{{ thumb.name }}</h6>
+			<button
+				class="mx-auto flex items-center transition-all duration-200"
+			>
+				<span
+					class="text-xs opacity-50 group-hover:opacity-100 group-hover:text-terracotta font-normal uppercase mr-3"
+					>Shop</span
+				>
+				<IconArrow />
+			</button>
+		</div>
+	</div>
+</template>

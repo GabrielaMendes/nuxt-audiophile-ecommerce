@@ -33,10 +33,8 @@ const smallerThanSm = breakpoints.smaller("sm");
 		</template>
 
 		<template #content>
-			<div>
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima,
-				aperiam.
-			</div>
+			<ThumbCards class="mt-44" />
+			<div class="mt-10"></div>
 		</template>
 	</NuxtLayout>
 </template>
