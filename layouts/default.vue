@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<TheNavbar class="sticky top-0" />
+		<TheNavbar />
 
     <header class="bg-almost-black text-white">
       <div class="content-container">
