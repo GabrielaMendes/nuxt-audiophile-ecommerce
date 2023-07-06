@@ -2,15 +2,17 @@
 	<div>
 		<TheNavbar />
 
-    <header class="bg-almost-black text-white">
-      <div class="content-container">
-        <slot name="header"></slot>
-      </div>
-    </header>
+		<header class="bg-almost-black text-white">
+			<div class="content-container">
+				<slot name="header"></slot>
+			</div>
+		</header>
 
 		<main class="content-container">
 			<slot name="content"></slot>
-    </main>
+		</main>
+
+		<BestGear />
 
 		<TheFooter />
 	</div>
@@ -18,6 +20,6 @@
 
 <style scoped>
 header :slotted(.header) {
-  @apply border-t-[1px] border-white border-opacity-20
+	@apply border-t-[1px] border-white border-opacity-20;
 }
 </style>
