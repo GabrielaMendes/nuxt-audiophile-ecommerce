@@ -34,7 +34,7 @@ p {
   @apply opacity-50
 }
 
-.overline {
+.overline-style {
   @apply text-sm text-terracotta uppercase;
 }
 
