@@ -3,7 +3,7 @@
 		<NuxtLink to="/">Home</NuxtLink>
 		<NuxtLink to="/">Headphones</NuxtLink>
 		<NuxtLink to="/">Speakers</NuxtLink>
-		<NuxtLink to="/">Eaphones</NuxtLink>
+		<NuxtLink to="/">Earphones</NuxtLink>
 	</nav>
 </template>
 
