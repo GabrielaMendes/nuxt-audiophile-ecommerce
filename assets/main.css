@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
 	@apply font-body text-base text-almost-black bg-off-white;
 }
@@ -31,7 +35,11 @@ h1 {
 }
 
 p {
-  @apply opacity-50
+  @apply opacity-50;
+}
+
+section {
+  @apply mt-28 lg:mt-40;
 }
 
 .overline-style {
@@ -44,4 +52,10 @@ p {
 
 .content-container {
   @apply mx-auto px-6 sm:px-8 max-w-[1200px];
+}
+
+@layer components {
+  .circles {
+    @apply absolute h-full w-full bg-[url('/images/home/desktop/pattern-circles.svg')] bg-no-repeat -top-[22%] sm:-top-[25%] bg-[length:40rem] sm:bg-[length:68rem]  lg:top-36 lg:-left-[23%] lg:bg-[length:55rem] bg-center
+  }
 }
