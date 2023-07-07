@@ -20,7 +20,7 @@ const thumbs = [
 		<div
 			v-for="thumb in thumbs"
 			:key="thumb.name"
-			class="group cursor-pointer bg-very-light-gray pb-6 rounded-md text-center flex-1"
+			class="relative group cursor-pointer bg-very-light-gray pb-6 rounded-md text-center flex-1 motion-safe:md:hover:shadow-md motion-safe:md:hover:scale-[1.03] transition-all duration-500 ease-out"
 		>
 			<img
 				:src="thumb.image"
