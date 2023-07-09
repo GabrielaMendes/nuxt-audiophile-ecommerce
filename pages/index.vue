@@ -1,6 +1,4 @@
 <script setup>
-import { useDevice } from "@/composables/useDevice";
-
 useHead({
 	title: "Home | audiophile",
 });
