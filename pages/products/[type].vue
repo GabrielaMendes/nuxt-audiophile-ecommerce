@@ -35,7 +35,7 @@ useHead({
 </script>
 
 <template>
-	<NuxtLayout>
+	<NuxtLayout name="products">
 		<template #header>
 			<div class="header bg-almost-black text-center py-10 sm:py-24 lg:py-28">
 				<h2 class="text-white max-sm:text-2xl">
@@ -65,10 +65,6 @@ useHead({
 					<p class="mb-8">{{ product.description }}</p>
 					<BaseButton />
 				</div>
-			</section>
-
-			<section class="pt-24 lg:pt-14">
-				<ThumbCards />
 			</section>
 		</template>
 	</NuxtLayout>
