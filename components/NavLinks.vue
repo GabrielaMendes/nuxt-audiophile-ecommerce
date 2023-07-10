@@ -1,9 +1,9 @@
 <template>
 	<nav>
 		<NuxtLink to="/">Home</NuxtLink>
-		<NuxtLink to="/">Headphones</NuxtLink>
-		<NuxtLink to="/">Speakers</NuxtLink>
-		<NuxtLink to="/">Earphones</NuxtLink>
+		<NuxtLink to="/products/headphones">Headphones</NuxtLink>
+		<NuxtLink to="/products/speakers">Speakers</NuxtLink>
+		<NuxtLink to="/products/earphones">Earphones</NuxtLink>
 	</nav>
 </template>
 
