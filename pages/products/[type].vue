@@ -21,7 +21,10 @@ switch (products) {
 		break;
 
 	default:
-		throw new Error(`${toTitleCase(products)} products not found`);
+		throw createError({
+      statusCode: 404,
+      message:`${toTitleCase(products)} products not found`,
+    });
 }
 
 const { device } = useDevice();
