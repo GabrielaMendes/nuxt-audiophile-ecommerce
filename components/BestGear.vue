@@ -21,7 +21,7 @@ const { device } = useDevice()
 				to buy your portable audio equipment.
 			</p>
 		</div>
-		<img
+		<NuxtImg
 			:src="`/images/shared/${device}/image-best-gear.jpg`"
 			alt="A guy listening to music in his headphone"
 			class="rounded-md flex-1"

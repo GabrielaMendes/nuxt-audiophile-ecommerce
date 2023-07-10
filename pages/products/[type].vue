@@ -47,7 +47,7 @@ useHead({
 				:key="product.id"
 				class="flex flex-col lg:flex-row lg:even:flex-row-reverse items-center justify-between gap-8 sm:gap-14 lg:gap-28 first:max-sm:mt-16"
 			>
-				<img
+				<NuxtImg
 					:src="product.images[device].preview"
 					alt="Product preview picture"
 					class="lg:max-w-[33.75rem] rounded-md"

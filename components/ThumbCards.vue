@@ -23,7 +23,7 @@ const thumbs = [
 			@click="navigateTo(`/products/${thumb.name.toLowerCase()}`)"
 			class="relative group cursor-pointer bg-very-light-gray pb-6 rounded-md text-center max-sm:even:mt-4 flex-1 motion-safe:md:hover:shadow-md motion-safe:md:hover:scale-[1.03] transition-all duration-500 ease-out"
 		>
-			<img
+			<NuxtImg
 				:src="thumb.image"
 				:alt="`${thumb.name} thumbnail`"
 				class="w-44 lg:w-56 mx-auto "
