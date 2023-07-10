@@ -1,7 +1,5 @@
 <template>
 	<div>
-		<TheNavbar />
-
 		<header class="bg-almost-black text-white">
 			<div class="content-container">
 				<slot name="header"></slot>
@@ -17,6 +15,5 @@
 		</main>
 
 		<BestGear />
-		<TheFooter />
 	</div>
 </template>
