@@ -84,6 +84,14 @@ module.exports = {
 					fontWeight: "700",
 				},
 			],
+			"6xl": [
+				"4.5rem",
+				{
+					lineHeight: "3.625rem",
+					letterSpacing: "2px",
+					fontWeight: "700",
+				},
+			],
 		},
 		extend: {
 			colors: {
