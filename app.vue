@@ -7,3 +7,14 @@
     <TheFooter />
 	</div>
 </template>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  @apply transition-all duration-[350ms] ease-in;
+}
+.page-enter-from,
+.page-leave-to {
+  @apply opacity-0 blur-lg;
+}
+</style>
