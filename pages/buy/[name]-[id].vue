@@ -44,8 +44,26 @@ useHead({
         <section></section>
         
         <!-- Gallery -->
-        <section>
-          
+        <section class="flex max-sm:flex-col gap-6">
+          <div class="flex flex-col gap-6">
+            <NuxtImg
+              :src="product.images[device].gallery1"
+              alt="Product gallery picture"
+              class="h-full w-full overflow-hidden rounded-md"
+            />
+            <NuxtImg
+              :src="product.images[device].gallery2"
+              alt="Product gallery picture"
+              class="h-full w-full overflow-hidden rounded-md"
+            />
+          </div>
+          <div>
+            <NuxtImg
+                :src="product.images[device].gallery3"
+                alt="Product gallery picture"
+                class="h-full w-full overflow-hidden rounded-md"
+            />
+          </div>
         </section>
         
         <!-- You May Also Like -->
