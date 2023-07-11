@@ -32,7 +32,7 @@ const recomendedProducts = getMultipleRandom(
 				<NuxtImg
 					:src="product.images[device].recomendation"
 					alt="Product picture"
-					class="w-full mx-auto sm:max-w-[15rem] lg:max-w-[22rem] rounded-lg"
+					class="w-full mx-auto sm:max-w-[18rem] lg:max-w-[22rem] rounded-lg"
 				/>
 				<h5 class="mt-6 sm:mt-8">
 					{{ product.name.replace("Headphones", "").replace("Earphones", "") }}
