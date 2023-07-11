@@ -9,7 +9,7 @@
 		<main class="content-container">
 			<slot name="content"></slot>
       
-      <section class="pt-24 lg:pt-14">
+      <section class="pt-20 lg:pt-14">
 				<ThumbCards />
 			</section>
 		</main>
