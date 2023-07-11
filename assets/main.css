@@ -35,27 +35,37 @@ h1 {
 }
 
 p {
-  @apply opacity-50;
+	@apply opacity-50;
 }
 
 section {
-  @apply mt-28 lg:mt-40;
+	@apply mt-28 lg:mt-40;
 }
 
 .overline-style {
-  @apply text-sm text-terracotta uppercase;
+	@apply text-sm text-terracotta uppercase;
 }
 
 .subtitle {
-  @apply text-xs text-terracotta uppercase;
+	@apply text-xs text-terracotta uppercase;
 }
 
 .content-container {
-  @apply mx-auto px-6 sm:px-8 max-w-[1200px];
+	@apply mx-auto px-6 sm:px-8 max-w-[1200px];
+}
+
+@layer base {
+	input[type="number"] {
+    @apply focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+  }
 }
 
 @layer components {
-  .circles {
-    @apply absolute h-full w-full bg-[url('/images/home/desktop/pattern-circles.svg')] bg-no-repeat -top-[22%] sm:-top-[25%] bg-[length:40rem] sm:bg-[length:68rem]  lg:top-36 lg:-left-[23%] lg:bg-[length:55rem] bg-center
+	.circles {
+		@apply absolute h-full w-full bg-[url('/images/home/desktop/pattern-circles.svg')] bg-no-repeat -top-[22%] sm:-top-[25%] bg-[length:40rem] sm:bg-[length:68rem]  lg:top-36 lg:-left-[23%] lg:bg-[length:55rem] bg-center;
+	}
+
+  .number-button {
+    @apply h-full opacity-25 px-4 hover:backdrop-brightness-90  hover:opacity-100 hover:text-terracotta transition-all duration-300;
   }
 }
