@@ -66,6 +66,6 @@ section {
 	}
 
   .number-button {
-    @apply h-full opacity-25 px-4 hover:backdrop-brightness-90  hover:opacity-100 hover:text-terracotta transition-all duration-300;
+    @apply h-full opacity-25 px-4 hover:bg-almost-black hover:bg-opacity-10 hover:opacity-100 hover:text-terracotta transition-all duration-300;
   }
 }

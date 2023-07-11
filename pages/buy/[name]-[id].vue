@@ -8,7 +8,17 @@ const product = products.find((product) => {
 	return product.id === parseInt(route.params.id);
 });
 
-const number = ref(null);
+const number = ref(1);
+const increment = () => {
+  if (number.value < 10) {
+    number.value += 1;
+  }
+}
+const decrement = () => {
+  if (number.value > 1) {
+    number.value -= 1;
+  }
+}
 
 useHead({
 	title: `${route.params.name} | audiophile`,
@@ -41,17 +51,16 @@ useHead({
 							<h6 class="mb-8">$ {{ product.price.toLocaleString() }}</h6>
 							<div class="flex gap-6">
 								<div class="bg-very-light-gray">
-									<button class="number-button">-</button>
+									<button @click="decrement" class="number-button">-</button>
 									<input
-										ref="number"
+										v-model="number"
 										type="number"
 										min="1"
 										max="10"
 										step="1"
-										value="1"
 										class="h-full w-8 text-center bg-very-light-gray"
 									/>
-									<button class="number-button">+</button>
+									<button @click="increment" class="number-button">+</button>
 								</div>
 								<BaseButton text="add to cart" />
 							</div>
