@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-	@apply font-body text-base text-almost-black bg-off-white;
+	@apply font-body text-base text-almost-black bg-off-white overflow-x-hidden;
 }
 
 h1,
