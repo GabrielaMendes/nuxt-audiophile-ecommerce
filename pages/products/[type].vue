@@ -1,36 +1,25 @@
 <script setup>
 const { toTitleCase } = useUtilities();
-const { earphones, headphones, speakers } = useProducts();
+const { products } = useProducts();
 
 const route = useRoute();
-const products = route.params.type;
+const category = route.params.type;
 
-let productList;
+const productList = products.filter(product => {
+  return product.category === category;
+})
 
-switch (products) {
-	case "earphones":
-		productList = earphones;
-		break;
-
-	case "headphones":
-		productList = headphones;
-		break;
-
-	case "speakers":
-		productList = speakers;
-		break;
-
-	default:
+if (productList.length === 0) {
 		throw createError({
       statusCode: 404,
-      message:`${toTitleCase(products)} products not found`,
+      message:`${toTitleCase(category)} products not found`,
     });
 }
 
 const { device } = useDevice();
 
 useHead({
-	title: `${toTitleCase(products)} | audiophile`,
+	title: `${toTitleCase(category)} | audiophile`,
 });
 </script>
 
@@ -40,7 +29,7 @@ useHead({
       <template #header>
         <div class="header bg-almost-black text-center py-10 sm:py-24 lg:py-28">
           <h2 class="text-white max-sm:text-2xl">
-            {{ toTitleCase(products) }}
+            {{ toTitleCase(category) }}
           </h2>
         </div>
       </template>
