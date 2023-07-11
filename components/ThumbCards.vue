@@ -21,7 +21,7 @@ const thumbs = [
 			v-for="thumb in thumbs"
 			:key="thumb.name"
 			@click="navigateTo(`/products/${thumb.name.toLowerCase()}`)"
-			class="relative group cursor-pointer bg-very-light-gray pb-6 rounded-md text-center max-sm:even:mt-4 flex-1 motion-safe:md:hover:shadow-md motion-safe:md:hover:scale-[1.03] transition-all duration-500 ease-out"
+			class="relative group cursor-pointer bg-very-light-gray pb-6 rounded-lg text-center max-sm:even:mt-4 flex-1 motion-safe:md:hover:shadow-md motion-safe:md:hover:scale-[1.03] transition-all duration-500 ease-out"
 		>
 			<NuxtImg
 				:src="thumb.image"
