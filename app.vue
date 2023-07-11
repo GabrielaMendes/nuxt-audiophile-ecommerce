@@ -11,7 +11,7 @@
 <style>
 .page-enter-active,
 .page-leave-active {
-  @apply transition-all duration-[350ms] ease-in;
+  @apply transition-all duration-300 ease-in;
 }
 .page-enter-from,
 .page-leave-to {
