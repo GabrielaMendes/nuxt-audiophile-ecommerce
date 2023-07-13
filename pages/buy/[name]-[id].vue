@@ -133,8 +133,10 @@ useHead({
 				</section>
 
 				<!-- You May Also Like -->
-				<RecomendationCards :currentProductId="product.id" />
-			</template>
+				<ClientOnly>
+          <RecomendationCards :currentProductId="product.id" />
+        </ClientOnly>
+      </template>
 		</NuxtLayout>
 	</div>
 </template>
