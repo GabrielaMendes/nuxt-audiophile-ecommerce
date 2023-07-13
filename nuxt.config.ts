@@ -17,6 +17,12 @@ export default defineNuxtConfig({
 		"@vueuse/nuxt",
 		"@nuxt/image-edge",
 		[
+			"@pinia/nuxt",
+			{
+				autoImports: ["defineStore", "definePiniaStore"],
+			},
+		],
+		[
 			"@nuxtjs/google-fonts",
 			{
 				families: {
