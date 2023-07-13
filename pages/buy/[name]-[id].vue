@@ -85,7 +85,29 @@ useHead({
 				</section>
 
 				<!-- Features and Box Content -->
-				<section></section>
+				<section class="flex max-lg:flex-col gap-28">
+					<div class="flex flex-col gap-6 sm:gap-8 lg:max-w-[40rem]">
+						<h3 class="max-sm:text-xl">Features</h3>
+						<p v-for="(feature, i) in product.features" :key="i">
+							{{ feature }}
+						</p>
+					</div>
+					<div class="flex flex-col sm:max-lg:flex-row gap-6 sm:gap-8 sm:max-lg:0">
+						<h3 class="max-sm:text-xl sm:max-lg:flex-1">In the box</h3>
+						<div class="sm:max-lg:flex-1 flex flex-col gap-2">
+							<div
+								v-for="(number, item, i) in product.box"
+								:key="i"
+								class="flex gap-4"
+							>
+								<span class="text-terracotta font-bold">
+                  {{ number }}x
+                </span>
+								<p>{{ item }}</p>
+							</div>
+						</div>
+					</div>
+				</section>
 
 				<!-- Gallery -->
 				<section class="flex max-sm:flex-col gap-6">
