@@ -3,21 +3,17 @@ defineProps({
   iconHeight: String,
   iconPath: String,
 })
-
-const isHovering = ref(false);
 </script>
 
 <template>
   <svg
-		@mouseenter="isHovering = true"
-		@mouseleave="isHovering = false"
+    class="group"
 		width="24"
 		:height="iconHeight"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<path
-			class="transition-colors duration-200 ease-linear"
-			:class="isHovering ? 'fill-terracotta' : 'fill-white'"
+			class="fill-white group-hover:fill-terracotta transition-colors duration-200 ease-linear"
 			:d="iconPath"
 			fill-rule="nonzero"
 		/>
