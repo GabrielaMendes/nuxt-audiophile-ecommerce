@@ -22,6 +22,7 @@ export default defineNuxtConfig({
 				autoImports: ["defineStore", "definePiniaStore"],
 			},
 		],
+		"@pinia-plugin-persistedstate/nuxt",
 		[
 			"@nuxtjs/google-fonts",
 			{
