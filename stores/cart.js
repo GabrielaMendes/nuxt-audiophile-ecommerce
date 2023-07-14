@@ -3,6 +3,10 @@ export const useCartStore = defineStore(
 	() => {
 		const cartItems = ref([]);
 
+		const totalItems = computed(() => {
+			return cartItems.value.reduce((acc, item) => acc + item.number, 0);
+		});
+
 		const addItem = (id, number) => {
 			const itemIdx = cartItems.value.findIndex((item) => item.id === id);
 			if (itemIdx >= 0) {
@@ -26,7 +30,7 @@ export const useCartStore = defineStore(
 			cartItems.value = [];
 		};
 
-		return { cartItems, addItem, removeItem, removeAll };
+		return { cartItems, totalItems, addItem, removeItem, removeAll };
 	},
 	{
 		persist: {
