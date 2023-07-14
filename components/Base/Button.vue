@@ -17,7 +17,7 @@
 
 <template>
 	<button
-		class="w-40 p-3 text-xs uppercase transition-colors duration-200"
+		class="w-40 p-3 text-xs uppercase transition-colors duration-200 disabled:bg-dark-gray disabled:bg-opacity-30"
 		:class="{
       'bg-almost-black text-white hover:bg-dark-gray': filled && black,
       'bg-terracotta text-white hover:bg-light-salmon': filled && !black,
