@@ -4,9 +4,9 @@ export const useCartStore = defineStore(
 		const cartItems = ref([]);
 
 		const addItem = (id, number) => {
-			const addedItem = cartItems.value.find((item) => item.id === id);
-			if (addedItem) {
-				addItem.number += number;
+			const itemIdx = cartItems.value.findIndex((item) => item.id === id);
+			if (itemIdx >= 0) {
+				cartItems.value[itemIdx].number += number;
 				return;
 			}
 
