@@ -13,6 +13,13 @@ const thumbs = [
 		image: "/images/shared/desktop/image-category-thumbnail-earphones.png",
 	},
 ];
+
+const emit = defineEmits(["closeModal"]);
+
+const onThumbClick = (category) => {
+	navigateTo(`/products/${category.toLowerCase()}`);
+	emit("closeModal");
+};
 </script>
 
 <template>
@@ -20,20 +27,22 @@ const thumbs = [
 		<div
 			v-for="thumb in thumbs"
 			:key="thumb.name"
-			@click="navigateTo(`/products/${thumb.name.toLowerCase()}`)"
+			@click="onThumbClick(thumb.name)"
 			class="relative group cursor-pointer bg-very-light-gray pb-6 rounded-lg text-center max-sm:even:mt-4 flex-1 motion-safe:md:hover:shadow-md motion-safe:md:hover:scale-[1.03] transition-all duration-500 ease-out"
 		>
 			<NuxtImg
 				:src="thumb.image"
 				:alt="`${thumb.name} thumbnail`"
-				class="w-44 lg:w-56 mx-auto "
+				class="w-44 lg:w-56 mx-auto"
 				:class="{
 					'-mt-16 lg:-mt-20': thumb.name === 'Headphones',
 					'-mt-14 lg:-mt-[4.5rem]': thumb.name === 'Speakers',
 					'-mt-10 lg:-mt-16': thumb.name === 'Earphones',
 				}"
 			/>
-			<h6 class="-mt-3 mb-2 max-lg:text-base max-lg:font-bold">{{ thumb.name }}</h6>
+			<h6 class="-mt-3 mb-2 max-lg:text-base max-lg:font-bold">
+				{{ thumb.name }}
+			</h6>
 			<button class="mx-auto flex items-center transition-all duration-200">
 				<span
 					class="text-xs opacity-50 group-hover:opacity-100 group-hover:text-terracotta font-normal uppercase mr-3"

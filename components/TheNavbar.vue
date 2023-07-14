@@ -11,9 +11,13 @@ const toggleModal = () => {
 const modal = ref(null);
 const menuButton = ref(null);
 
-onClickOutside(modal, () => {
-  modalNav.value = false
-}, { ignore: [menuButton] });
+onClickOutside(
+	modal,
+	() => {
+		modalNav.value = false;
+	},
+	{ ignore: [menuButton] }
+);
 
 // Hide and Show NavBar
 const { y } = useWindowScroll();
@@ -61,7 +65,7 @@ watch(y, (newValue, oldValue) => {
 				ref="modal"
 				class="rounded-b-md mt-0 w-full overflow-x-hidden max-h-[85%] overflow-y-auto bg-off-white content-container pt-28 pb-8"
 			>
-				<ThumbCards class="text-almost-black" />
+				<ThumbCards @close-modal="modalNav = false" class="text-almost-black" />
 			</div>
 		</div>
 	</div>
