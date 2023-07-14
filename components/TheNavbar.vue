@@ -1,5 +1,10 @@
 <script setup>
 import { useWindowScroll, onClickOutside } from "@vueuse/core";
+import { storeToRefs } from "pinia";
+import { useCartStore } from "~/stores/cart";
+
+const cartStore = useCartStore();
+const { totalItems } = storeToRefs(cartStore)
 
 // Hamburger Menu
 const modalNav = ref(false);
@@ -49,7 +54,19 @@ watch(y, (newValue, oldValue) => {
 				<span class="hidden">audiophile</span>
 			</NuxtLink>
 			<NavLinks class="flex gap-8 max-lg:hidden" />
-			<button>
+			<button class="relative ">
+				<transition
+          enter-from-class="opacity-0 scale-0"
+          leave-to-class="opacity-0 scale-0"
+          enter-active-class="transition-all duration-300 ease-out"
+          leave-active-class="transition-all duration-300 ease-out"
+        >
+          <span
+            v-show="totalItems > 0"
+            class="absolute -right-3 -top-1.5 bg-terracotta w-[18px] h-[18px] px-0.5 rounded-full flex items-center justify-center text-[0.8125rem]"
+            >{{ totalItems }}</span
+          >
+        </transition>
 				<IconCart aria-hidden="true" />
 				<span class="hidden">Shopping Cart</span>
 			</button>
