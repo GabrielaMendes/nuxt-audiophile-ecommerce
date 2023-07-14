@@ -1,5 +1,9 @@
 <script setup>
+import { useCartStore } from "~/stores/cart"
+
 const { device } = useDevice();
+const { addItem } = useCartStore();
+const confirmMessage = ref(false)
 
 const { products } = useProducts();
 const route = useRoute();
@@ -30,6 +34,16 @@ const goBack = () => {
 	navigateTo("/");
 };
 
+const addToCart = () => {
+  addItem(product.id, number.value);
+
+  confirmMessage.value = true;
+  setTimeout(() => {
+    confirmMessage.value = false;
+    number.value = 1
+  }, 5000)
+}
+
 useHead({
 	title: `${route.params.name} | audiophile`,
 });
@@ -47,6 +61,7 @@ useHead({
 					>
 						Go Back
 					</button>
+
 					<div
 						class="flex max-sm:flex-col max-sm:items-start items-center justify-between gap-8 md:gap-20 lg:gap-28"
 					>
@@ -56,7 +71,7 @@ useHead({
 							class="flex-1 w-full max-w-full sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md"
 						/>
 
-						<div class="flex-1 flex flex-col items-start">
+						<div class="relative flex-1 flex flex-col items-start">
 							<h6 v-if="product.new" class="overline-style mb-4">
 								New Product
 							</h6>
@@ -66,7 +81,7 @@ useHead({
 							<p class="mb-8">{{ product.description }}</p>
 							<h6 class="mb-8">$ {{ product.price.toLocaleString() }}</h6>
 							<div class="flex gap-6">
-								<div class="bg-very-light-gray">
+								<div class="bg-very-light-gray shrink-0">
 									<button @click="decrement" class="number-button">-</button>
 									<input
 										v-model="number"
@@ -78,8 +93,21 @@ useHead({
 									/>
 									<button @click="increment" class="number-button">+</button>
 								</div>
-								<BaseButton text="add to cart" />
+								
+                <BaseButton :disabled="number < 1 || number > 10" text="add to cart" @click="addToCart" />
 							</div>
+
+              <transition
+                enter-from-class="opacity-0 -translate-y-full"
+                leave-to-class="opacity-0 -translate-y-full"
+                enter-active-class="transition-all duration-300"
+                leave-active-class="transition-all duration-300"
+              >
+                <div v-show="confirmMessage" class="absolute -bottom-8 flex items-center gap-2 text-emerald-500 text-[0.875rem]">
+                  <IconCheck />
+                  Product(s) added to cart
+                </div>
+              </transition>
 						</div>
 					</div>
 				</section>
@@ -133,7 +161,7 @@ useHead({
 				</section>
 
 				<!-- You May Also Like -->
-				<ClientOnly>
+				<ClientOnly placeholder="Loading...">
           <RecomendationCards :currentProductId="product.id" />
         </ClientOnly>
       </template>
