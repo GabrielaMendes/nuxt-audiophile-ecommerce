@@ -33,9 +33,7 @@ export const useCartStore = defineStore(
 		return { cartItems, totalItems, addItem, removeItem, removeAll };
 	},
 	{
-		persist: {
-			storage: persistedState.localStorage,
-		},
+		persist: true,
 	}
 );
 
