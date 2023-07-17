@@ -1,6 +1,4 @@
 <script setup>
-import { useCartStore } from "~/stores/cart"
-
 const { device } = useDevice();
 const { addItem } = useCartStore();
 const confirmMessage = ref(false)
