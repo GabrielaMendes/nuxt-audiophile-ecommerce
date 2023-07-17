@@ -18,10 +18,10 @@ export const useCartStore = defineStore(
 		};
 
 		const removeItem = (id) => {
-			const itemIdx = cartItems.value.findIndex((item) => item.id == id);
+			const itemIdx = cartItems.value.findIndex((item) => item.id === id);
 			cartItems.value[itemIdx].number -= 1;
 
-			if (cartItems[itemIdx].number === 0) {
+			if (cartItems.value[itemIdx].number === 0) {
 				cartItems.value.splice(itemIdx, 1);
 			}
 		};
