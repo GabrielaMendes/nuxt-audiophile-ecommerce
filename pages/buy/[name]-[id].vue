@@ -5,7 +5,6 @@ const confirmMessage = ref(false)
 
 const { products } = useProducts();
 const route = useRoute();
-const router = useRouter();
 
 const product = products.find((product) => {
 	return product.id === parseInt(route.params.id);
@@ -21,15 +20,6 @@ const decrement = () => {
 	if (number.value > 1) {
 		number.value -= 1;
 	}
-};
-
-const goBack = () => {
-	if (router.options.history.state.back) {
-		router.back();
-		return;
-	}
-
-	navigateTo("/");
 };
 
 const addToCart = () => {
@@ -53,12 +43,7 @@ useHead({
 			<template #content>
 				<!-- Product -->
 				<section class="max-sm:mt-14 sm:max-lg:mt-16">
-					<button
-						@click="goBack"
-						class="relative -top-8 lg:-top-14 opacity-50 hover:opacity-100 hover:text-terracotta transition-all duration-200"
-					>
-						Go Back
-					</button>
+					<GoBackButton />
 
 					<div
 						class="flex max-sm:flex-col max-sm:items-start items-center justify-between gap-8 md:gap-20 lg:gap-28"
