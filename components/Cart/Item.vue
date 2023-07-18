@@ -1,33 +1,44 @@
 <script setup>
 defineProps({
 	item: Object,
+  summary: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const { addItem, removeItem } = useCartStore();
 </script>
 
 <template>
-	<div class="flex items-center justify-between">
+	<div class="items-center justify-between" :class="{flex: !summary}">
 		<div class="flex items-center gap-4">
 			<NuxtImg
 				:src="item.images.mobile.product"
 				alt="Product picture"
 				class="w-16 rounded-lg"
 			/>
-			<div class="font-bold">
+			<div class="font-bold flex w-full">
 				<div>
-					{{
-						item.name
-							.replace("Headphones", "")
-							.replace("Earphones", "")
-							.replace("Speaker", "")
-							.replace("Mark", "MK")
-					}}
-				</div>
-				<p>$ {{ item.price.toLocaleString() }}</p>
+          <div>
+            {{
+              item.name
+                .replace("Headphones", "")
+                .replace("Earphones", "")
+                .replace("Speaker", "")
+                .replace("Wireless", "")
+                .replace("Mark", "MK")
+            }}
+          </div>
+          <p>$ {{ item.price.toLocaleString() }}</p>
+        </div>
+        <p v-if="summary" class="ml-auto">
+          x{{ item.qty }}
+        </p>
 			</div>
 		</div>
-		<div class="bg-very-light-gray h-9 shrink-0">
+
+		<div v-if="!summary" class="bg-very-light-gray h-9 shrink-0">
 			<button @click="removeItem(item.id)" class="number-button">-</button>
 			<input
 				:value="item.qty"
@@ -37,7 +48,7 @@ const { addItem, removeItem } = useCartStore();
 				step="1"
 				class="h-full w-7 text-center bg-very-light-gray"
 			/>
-			<button @click="addItem(item.id, 1)" class="number-button">+</button>
+			<button @click="addItem(item, 1)" class="number-button">+</button>
 		</div>
 	</div>
 </template>
