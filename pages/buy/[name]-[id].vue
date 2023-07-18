@@ -33,7 +33,7 @@ const goBack = () => {
 };
 
 const addToCart = () => {
-  addItem(product.id, number.value);
+  addItem(product, number.value);
 
   confirmMessage.value = true;
   setTimeout(() => {

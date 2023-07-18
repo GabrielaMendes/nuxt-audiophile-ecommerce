@@ -4,24 +4,37 @@ export const useCartStore = defineStore(
 		const cartItems = ref([]);
 
 		const totalItems = computed(() => {
-			return cartItems.value.reduce((acc, item) => acc + item.number, 0);
+			return cartItems.value.reduce((acc, item) => acc + item.qty, 0);
 		});
 
-		const addItem = (id, number) => {
-			const itemIdx = cartItems.value.findIndex((item) => item.id === id);
+		const totalPrice = computed(() => {
+			return cartItems.value.reduce(
+				(acc, item) => acc + item.qty * item.price,
+				0
+			);
+		});
+
+		const addItem = (product, qty) => {
+			const itemIdx = cartItems.value.findIndex(
+				(item) => item.id === product.id
+			);
+
 			if (itemIdx >= 0) {
-				cartItems.value[itemIdx].number += number;
+				cartItems.value[itemIdx].qty += qty;
 				return;
 			}
 
-			cartItems.value.push({ id, number });
+			cartItems.value.push({
+				...product,
+				qty,
+			});
 		};
 
 		const removeItem = (id) => {
 			const itemIdx = cartItems.value.findIndex((item) => item.id === id);
-			cartItems.value[itemIdx].number -= 1;
+			cartItems.value[itemIdx].qty -= 1;
 
-			if (cartItems.value[itemIdx].number === 0) {
+			if (cartItems.value[itemIdx].qty === 0) {
 				cartItems.value.splice(itemIdx, 1);
 			}
 		};
@@ -30,13 +43,20 @@ export const useCartStore = defineStore(
 			cartItems.value = [];
 		};
 
-		return { cartItems, totalItems, addItem, removeItem, removeAll };
+		return {
+			cartItems,
+			totalItems,
+			totalPrice,
+			addItem,
+			removeItem,
+			removeAll,
+		};
 	},
 	{
 		persist: true,
 	}
 );
 
-if(import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
+if (import.meta.hot) {
+	import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot));
 }
