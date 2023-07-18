@@ -4,6 +4,12 @@ const { cartItems, totalItems, totalPrice } = storeToRefs(cartStore);
 const { removeAll } = cartStore;
 
 const emit = defineEmits(["closeCart"]);
+
+const onCheckout = () => {
+  navigateTo('/checkout')
+	emit("closeCart");
+};
+
 const onGoBack = () => {
 	emit("closeCart");
 };
@@ -35,7 +41,7 @@ const onGoBack = () => {
 					<h6>$ {{ totalPrice.toLocaleString() }}</h6>
 				</div>
 				<!-- Checkout Button -->
-				<BaseButton text="Checkout" class="w-full mt-6" />
+				<BaseButton @click="onCheckout" text="Checkout" class="w-full mt-6" />
 			</div>
 
 			<div v-else>
