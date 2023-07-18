@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 		"@nuxtjs/tailwindcss",
 		"@vueuse/nuxt",
 		"@nuxt/image-edge",
+		"@formkit/nuxt",
 		[
 			"@pinia/nuxt",
 			{
