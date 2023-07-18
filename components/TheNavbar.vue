@@ -1,24 +1,24 @@
 <script setup>
 import { useWindowScroll, onClickOutside } from "@vueuse/core";
 
-const { device } = useDevice()
+const { device } = useDevice();
 
 const cartStore = useCartStore();
-const { totalItems } = storeToRefs(cartStore)
+const { totalItems } = storeToRefs(cartStore);
 
 const modalNav = ref(false);
 const modalCart = ref(false);
-const someModal = computed(() => modalNav.value || modalCart.value)
+const someModal = computed(() => modalNav.value || modalCart.value);
 
 const toggleNavModal = () => {
-  modalNav.value = !modalNav.value;
+	modalNav.value = !modalNav.value;
 };
 
-watch(device, newValue => {
-  if (newValue === "desktop") {
-    modalNav.value = false;
-  }
-})
+watch(device, (newValue) => {
+	if (newValue === "desktop") {
+		modalNav.value = false;
+	}
+});
 
 const toggleCartModal = () => {
 	modalCart.value = !modalCart.value;
@@ -44,7 +44,6 @@ onClickOutside(
 	},
 	{ ignore: [cartButton] }
 );
-
 
 // Hide and Show NavBar
 const { y } = useWindowScroll();
@@ -76,19 +75,19 @@ watch(y, (newValue, oldValue) => {
 				<span class="hidden">audiophile</span>
 			</NuxtLink>
 			<NavLinks class="flex gap-8 max-lg:hidden" />
-			<button ref="cartButton" @click="toggleCartModal" class="relative ">
+			<button ref="cartButton" @click="toggleCartModal" class="relative">
 				<transition
-          enter-from-class="opacity-0 scale-0"
-          leave-to-class="opacity-0 scale-0"
-          enter-active-class="transition-all duration-300 ease-out"
-          leave-active-class="transition-all duration-300 ease-out"
-        >
-          <span
-            v-show="totalItems > 0"
-            class="absolute -right-3 -top-1.5 bg-terracotta w-[18px] h-[18px] px-0.5 rounded-full flex items-center justify-center text-[0.8125rem]"
-            >{{ totalItems }}</span
-          >
-        </transition>
+					enter-from-class="opacity-0 scale-0"
+					leave-to-class="opacity-0 scale-0"
+					enter-active-class="transition-all duration-300 ease-out"
+					leave-active-class="transition-all duration-300 ease-out"
+				>
+					<span
+						v-show="totalItems > 0"
+						class="absolute -right-3 -top-1.5 bg-terracotta w-[18px] h-[18px] px-0.5 rounded-full flex items-center justify-center text-[0.8125rem]"
+						>{{ totalItems }}</span
+					>
+				</transition>
 				<IconCart aria-hidden="true" />
 				<span class="hidden">Shopping Cart</span>
 			</button>
@@ -101,17 +100,21 @@ watch(y, (newValue, oldValue) => {
 		>
 			<!-- Menu Modal -->
 			<div
-        v-show="modalNav"
+				v-show="modalNav"
 				ref="navModal"
 				class="rounded-b-md mt-0 w-full overflow-x-hidden max-h-[85%] overflow-y-auto bg-off-white content-container pt-28 pb-8"
 			>
 				<ThumbCards @close-modal="modalNav = false" />
 			</div>
 
-      <!-- Cart Modal -->
-      <div class="content-container">
-        <CartModal v-show="modalCart" ref="cartModal" />
-      </div>
+			<!-- Cart Modal -->
+			<div class="content-container">
+				<CartModal
+					v-show="modalCart"
+					ref="cartModal"
+					@close-cart="toggleCartModal"
+				/>
+			</div>
 		</div>
 	</div>
 </template>
