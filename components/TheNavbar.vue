@@ -1,28 +1,50 @@
 <script setup>
 import { useWindowScroll, onClickOutside } from "@vueuse/core";
-import { storeToRefs } from "pinia";
-import { useCartStore } from "~/stores/cart";
+
+const { device } = useDevice()
 
 const cartStore = useCartStore();
 const { totalItems } = storeToRefs(cartStore)
 
-// Hamburger Menu
 const modalNav = ref(false);
+const modalCart = ref(false);
+const someModal = computed(() => modalNav.value || modalCart.value)
 
-const toggleModal = () => {
-	modalNav.value = !modalNav.value;
+const toggleNavModal = () => {
+  modalNav.value = !modalNav.value;
 };
 
-const modal = ref(null);
+watch(device, newValue => {
+  if (newValue === "desktop") {
+    modalNav.value = false;
+  }
+})
+
+const toggleCartModal = () => {
+	modalCart.value = !modalCart.value;
+};
+
+const cartModal = ref(null);
+const cartButton = ref(null);
+const navModal = ref(null);
 const menuButton = ref(null);
 
 onClickOutside(
-	modal,
+	navModal,
 	() => {
 		modalNav.value = false;
 	},
 	{ ignore: [menuButton] }
 );
+
+onClickOutside(
+	cartModal,
+	() => {
+		modalCart.value = false;
+	},
+	{ ignore: [cartButton] }
+);
+
 
 // Hide and Show NavBar
 const { y } = useWindowScroll();
@@ -44,7 +66,7 @@ watch(y, (newValue, oldValue) => {
 		:class="{ '-translate-y-full': isScrollingDown }"
 	>
 		<div class="content-container py-8 flex gap-10 justify-between">
-			<button ref="menuButton" @click="toggleModal" class="lg:hidden">
+			<button ref="menuButton" @click="toggleNavModal" class="lg:hidden">
 				<IconHamburger aria-hidden="true" />
 				<span class="hidden">Menu</span>
 			</button>
@@ -54,7 +76,7 @@ watch(y, (newValue, oldValue) => {
 				<span class="hidden">audiophile</span>
 			</NuxtLink>
 			<NavLinks class="flex gap-8 max-lg:hidden" />
-			<button class="relative ">
+			<button ref="cartButton" @click="toggleCartModal" class="relative ">
 				<transition
           enter-from-class="opacity-0 scale-0"
           leave-to-class="opacity-0 scale-0"
@@ -74,16 +96,22 @@ watch(y, (newValue, oldValue) => {
 
 		<!-- Overlay -->
 		<div
-			v-show="modalNav"
-			class="fixed z-20 top-[5.5625rem] left-0 bg-black/40 w-full h-full lg:hidden"
+			v-show="someModal"
+			class="fixed z-20 top-[5.5625rem] left-0 bg-black/40 w-full h-full text-almost-black"
 		>
-			<!-- Modal -->
+			<!-- Menu Modal -->
 			<div
-				ref="modal"
+        v-show="modalNav"
+				ref="navModal"
 				class="rounded-b-md mt-0 w-full overflow-x-hidden max-h-[85%] overflow-y-auto bg-off-white content-container pt-28 pb-8"
 			>
-				<ThumbCards @close-modal="modalNav = false" class="text-almost-black" />
+				<ThumbCards @close-modal="modalNav = false" />
 			</div>
+
+      <!-- Cart Modal -->
+      <div class="content-container">
+        <CartModal v-show="modalCart" ref="cartModal" />
+      </div>
 		</div>
 	</div>
 </template>
