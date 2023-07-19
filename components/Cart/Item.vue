@@ -14,7 +14,7 @@ const { addItem, removeItem } = useCartStore();
 	<div class="items-center justify-between" :class="{flex: !summary}">
 		<div class="flex items-center gap-4">
 			<NuxtImg
-				:src="item.images.mobile.product"
+				:src="item.images.cart"
 				alt="Product picture"
 				class="w-16 rounded-lg"
 			/>
