@@ -1,6 +1,7 @@
 <script setup>
-import { useWindowScroll, onClickOutside } from "@vueuse/core";
+import { useWindowScroll } from "@vueuse/core";
 
+const { toggleScrollLock } = useScrollStore();
 const { device } = useDevice();
 
 const cartStore = useCartStore();
@@ -12,16 +13,18 @@ const someModal = computed(() => modalNav.value || modalCart.value);
 
 const toggleNavModal = () => {
 	modalNav.value = !modalNav.value;
+	toggleScrollLock();
 };
 
 watch(device, (newValue) => {
-	if (newValue === "desktop") {
-		modalNav.value = false;
+	if (newValue === "desktop" && modalNav.value) {
+		toggleNavModal();
 	}
 });
 
 const toggleCartModal = () => {
 	modalCart.value = !modalCart.value;
+	toggleScrollLock();
 };
 
 const cartModal = ref(null);
@@ -29,21 +32,23 @@ const cartButton = ref(null);
 const navModal = ref(null);
 const menuButton = ref(null);
 
-onClickOutside(
-	navModal,
-	() => {
-		modalNav.value = false;
-	},
-	{ ignore: [menuButton] }
-);
+// onClickOutside(
+// 	navModal,
+// 	() => {
+// 		modalNav.value = false
+//     scrollLock.value = false;
+// 	},
+// 	{ ignore: [menuButton] }
+// );
 
-onClickOutside(
-	cartModal,
-	() => {
-		modalCart.value = false;
-	},
-	{ ignore: [cartButton] }
-);
+// onClickOutside(
+// 	cartModal,
+// 	() => {
+// 		modalCart.value = false;
+//     scrollLock.value = false;
+// 	},
+// 	{ ignore: [cartButton] }
+// );
 
 // Hide and Show NavBar
 const { y } = useWindowScroll();
@@ -61,11 +66,16 @@ watch(y, (newValue, oldValue) => {
 
 <template>
 	<div
-		class="sticky top-0 bg-almost-black text-white z-50 transition-transform duration-500"
+		class="sticky top-0 bg-almost-black text-white z-50 transition-transform duration-300"
 		:class="{ '-translate-y-full': isScrollingDown }"
 	>
 		<div class="content-container py-8 flex gap-10 justify-between">
-			<button ref="menuButton" @click="toggleNavModal" class="lg:hidden">
+			<button
+				ref="menuButton"
+				:disabled="modalCart"
+				@click="toggleNavModal"
+				class="lg:hidden"
+			>
 				<IconHamburger aria-hidden="true" />
 				<span class="hidden">Menu</span>
 			</button>
@@ -75,7 +85,12 @@ watch(y, (newValue, oldValue) => {
 				<span class="hidden">audiophile</span>
 			</NuxtLink>
 			<NavLinks class="flex gap-8 max-lg:hidden" />
-			<button ref="cartButton" @click="toggleCartModal" class="relative">
+			<button
+				ref="cartButton"
+				:disabled="modalNav"
+				@click="toggleCartModal"
+				class="relative"
+			>
 				<transition
 					enter-from-class="opacity-0 scale-0"
 					leave-to-class="opacity-0 scale-0"
@@ -88,7 +103,10 @@ watch(y, (newValue, oldValue) => {
 						>{{ totalItems }}</span
 					>
 				</transition>
-				<IconCart aria-hidden="true" />
+				<IconCart
+					aria-hidden="true"
+					:class="{ 'pointer-events-none': modalNav }"
+				/>
 				<span class="hidden">Shopping Cart</span>
 			</button>
 		</div>
@@ -104,7 +122,7 @@ watch(y, (newValue, oldValue) => {
 				ref="navModal"
 				class="rounded-b-md mt-0 w-full overflow-x-hidden max-h-[85%] overflow-y-auto bg-off-white content-container pt-28 pb-8"
 			>
-				<ThumbCards @close-modal="modalNav = false" />
+				<ThumbCards @close-modal="toggleNavModal" />
 			</div>
 
 			<!-- Cart Modal -->
