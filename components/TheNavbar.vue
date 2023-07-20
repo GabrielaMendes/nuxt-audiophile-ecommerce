@@ -32,23 +32,25 @@ const cartButton = ref(null);
 const navModal = ref(null);
 const menuButton = ref(null);
 
-// onClickOutside(
-// 	navModal,
-// 	() => {
-// 		modalNav.value = false
-//     scrollLock.value = false;
-// 	},
-// 	{ ignore: [menuButton] }
-// );
+onClickOutside(
+	navModal,
+	() => {
+		if (modalNav.value) {
+			toggleNavModal();
+		}
+	},
+	{ ignore: [menuButton] }
+);
 
-// onClickOutside(
-// 	cartModal,
-// 	() => {
-// 		modalCart.value = false;
-//     scrollLock.value = false;
-// 	},
-// 	{ ignore: [cartButton] }
-// );
+onClickOutside(
+	cartModal,
+	() => {
+		if (modalCart.value) {
+			toggleCartModal();
+		}
+	},
+	{ ignore: [cartButton] }
+);
 
 // Hide and Show NavBar
 const { y } = useWindowScroll();
