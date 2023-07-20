@@ -5,7 +5,7 @@ const { scrollLock } = storeToRefs(scrollStore);
 useHead(() => {
 	return {
 		bodyAttrs: {
-			class: scrollLock.value ? "overflow-hidden" : "overflow-auto",
+			class: scrollLock.value ? "overflow-hidden" : "[overflow:overlay]",
 		},
 	};
 });
