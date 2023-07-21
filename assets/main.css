@@ -56,8 +56,14 @@ section {
 
 @layer base {
 	input[type="number"] {
-    @apply focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
-  }
+		@apply focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
+	}
+}
+
+@layer utilities {
+	.grid-form {
+		@apply grid grid-cols-2 gap-4;
+	}
 }
 
 @layer components {
@@ -65,7 +71,11 @@ section {
 		@apply absolute h-full w-full bg-[url('/images/home/desktop/pattern-circles.svg')] bg-no-repeat -top-[22%] sm:-top-[25%] bg-[length:40rem] sm:bg-[length:68rem]  lg:top-36 lg:-left-[23%] lg:bg-[length:55rem] bg-center;
 	}
 
-  .number-button {
-    @apply h-full opacity-25 px-4 hover:bg-almost-black hover:bg-opacity-10 hover:opacity-100 hover:text-terracotta transition-all duration-300;
-  }
+	.number-button {
+		@apply h-full opacity-25 px-4 hover:bg-almost-black hover:bg-opacity-10 hover:opacity-100 hover:text-terracotta transition-all duration-300;
+	}
+
+	.behind-bar {
+		@apply absolute z-0 -top-[6rem] left-0 w-full h-[6rem] bg-almost-black;
+	}
 }

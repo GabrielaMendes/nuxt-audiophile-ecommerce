@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<header class="bg-almost-black text-white">
+		<header class="relative bg-almost-black text-white">
 			<div class="content-container">
 				<slot name="header"></slot>
 			</div>
@@ -16,6 +16,6 @@
 
 <style scoped>
 header :slotted(.header) {
-	@apply border-t-[1px] border-white border-opacity-20;
+	@apply border-t-[1px] border-white border-opacity-20 before:behind-bar;
 }
 </style>
