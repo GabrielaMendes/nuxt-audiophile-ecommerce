@@ -1,12 +1,11 @@
 <script setup>
 const cartStore = useCartStore();
 const { cartItems, totalItems, totalPrice } = storeToRefs(cartStore);
-const { removeAll } = cartStore;
 
 const emit = defineEmits(["closeCart"]);
 
 const onCheckout = () => {
-  navigateTo('/checkout')
+	navigateTo("/checkout");
 	emit("closeCart");
 };
 
@@ -16,7 +15,7 @@ const onGoBack = () => {
 </script>
 
 <template>
-	<div class="ml-auto py-6 max-sm:mx-auto max-w-[28rem] max-h-screen">
+	<div class="ml-auto py-6 max-sm:mx-auto max-w-[28rem] max-h-[85%]">
 		<div
 			class="rounded-lg w-full overflow-y-auto bg-off-white content-container p-8"
 		>
@@ -25,7 +24,7 @@ const onGoBack = () => {
 				<div class="flex justify-between mb-8">
 					<h6>Cart ({{ totalItems }})</h6>
 					<button
-						@click="removeAll"
+						@click="cartStore.removeAll"
 						class="opacity-50 underline hover:opacity-100 hover:text-terracotta"
 					>
 						Remove all
