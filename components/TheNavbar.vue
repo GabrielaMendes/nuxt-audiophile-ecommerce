@@ -114,10 +114,7 @@ watch(y, (newValue, oldValue) => {
 		</div>
 
 		<!-- Overlay -->
-		<div
-			v-show="someModal"
-			class="fixed z-20 top-[5.5625rem] left-0 bg-black/40 w-full h-full text-almost-black"
-		>
+		<BaseOverlay v-show="someModal">
 			<!-- Menu Modal -->
 			<div
 				v-show="modalNav"
@@ -135,6 +132,6 @@ watch(y, (newValue, oldValue) => {
 					@close-cart="toggleCartModal"
 				/>
 			</div>
-		</div>
+		</BaseOverlay>
 	</div>
 </template>
