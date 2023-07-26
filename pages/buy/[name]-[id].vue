@@ -63,7 +63,7 @@ useHead({
 							</h2>
 							<p class="mb-8">{{ product.description }}</p>
 							<h6 class="mb-8">$ {{ product.price.toLocaleString() }}</h6>
-							<div class="flex gap-6">
+							<div class="flex gap-6 z-10">
 								<div class="bg-very-light-gray shrink-0">
 									<button @click="decrement" class="number-button">-</button>
 									<input
@@ -86,7 +86,7 @@ useHead({
                 enter-active-class="transition-all duration-300"
                 leave-active-class="transition-all duration-300"
               >
-                <div v-show="confirmMessage" class="absolute -bottom-8 flex items-center gap-2 text-emerald-500 text-[0.875rem]">
+                <div v-show="confirmMessage" class="absolute -bottom-12 flex items-center gap-2 text-emerald-500 text-[0.875rem] border border-emerald-500 px-2 py-1 rounded z-0">
                   <IconCheck />
                   Product(s) added to cart
                 </div>
