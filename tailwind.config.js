@@ -96,6 +96,7 @@ module.exports = {
 		extend: {
 			colors: {
 				terracotta: "#D87D4A",
+        "error-red": "#CD2C2C",
 				"light-salmon": "#FBAF85",
 				"off-white": "#FAFAFA",
 				"very-light-gray": "#F1F1F1",
@@ -106,4 +107,3 @@ module.exports = {
 	},
 	plugins: [],
 };
-
