@@ -1,4 +1,20 @@
 /** @type {import("tailwindcss").Config} */
+
+const plugin = require('tailwindcss/plugin')
+const rotateZ = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.rotate-z-0': {
+      transform: 'rotateZ(0deg)',
+    },
+    '.rotate-z-41': {
+      transform: 'rotateZ(41deg)',
+    },
+    '.-rotate-z-41': {
+      transform: 'rotateZ(-41deg)',
+    },
+  })
+})
+
 module.exports = {
 	content: [
 		"./components/**/*.{js,vue,ts}",
@@ -96,14 +112,17 @@ module.exports = {
 		extend: {
 			colors: {
 				terracotta: "#D87D4A",
-        "error-red": "#CD2C2C",
+				"error-red": "#CD2C2C",
 				"light-salmon": "#FBAF85",
 				"off-white": "#FAFAFA",
 				"very-light-gray": "#F1F1F1",
 				"dark-gray": "#4C4C4C",
 				"almost-black": "#101010",
 			},
+			transitionTimingFunction: {
+				expo: "cubic-bezier(1, 0, 0, 1)",
+			},
 		},
 	},
-	plugins: [],
+	plugins: [rotateZ],
 };
