@@ -19,15 +19,21 @@ export const useCartStore = defineStore(
 				(item) => item.id === product.id
 			);
 
-			if (itemIdx >= 0) {
-				cartItems.value[itemIdx].qty += qty;
-				return;
-			}
+			if (itemIdx < 0) {
+        cartItems.value.push({
+          ...product,
+          qty,
+        });
 
-			cartItems.value.push({
-				...product,
-				qty,
-			});
+        return true;
+      }
+      
+      if (cartItems.value[itemIdx].qty + qty > 10) {
+        return false;
+      }
+
+      cartItems.value[itemIdx].qty += qty;
+      return true;
 		};
 
 		const removeItem = (id) => {

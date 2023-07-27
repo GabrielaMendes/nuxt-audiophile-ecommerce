@@ -1,7 +1,9 @@
 <script setup>
 const { device } = useDevice();
 const { addItem } = useCartStore();
-const confirmMessage = ref(false)
+
+const confirmMessage = ref(false);
+const maxMessage = ref(false);
 
 const { products } = useProducts();
 const route = useRoute();
@@ -22,15 +24,31 @@ const decrement = () => {
 	}
 };
 
-const addToCart = () => {
-  addItem(product, number.value);
+watch(number, (newValue) => {
+	if (newValue > 10) {
+		number.value = 10;
+	}
+});
 
-  confirmMessage.value = true;
-  setTimeout(() => {
-    confirmMessage.value = false;
-    number.value = 1
-  }, 5000)
-}
+const addToCart = () => {
+	const success = addItem(product, number.value);
+
+	if (success) {
+		confirmMessage.value = true;
+    maxMessage.value = false;
+		number.value = 1;
+		setTimeout(() => {
+			confirmMessage.value = false;
+		}, 3000);
+		return;
+	}
+
+	maxMessage.value = true;
+  confirmMessage.value = false;
+	setTimeout(() => {
+		maxMessage.value = false;
+	}, 3000);
+};
 
 useHead({
 	title: `${route.params.name} | audiophile`,
@@ -72,25 +90,39 @@ useHead({
 										min="1"
 										max="10"
 										step="1"
+										v-maska
+										data-maska="#0"
+										@blur="number ? '' : (number = 1)"
 										class="h-full w-8 text-center bg-very-light-gray"
 									/>
 									<button @click="increment" class="number-button">+</button>
 								</div>
-								
-                <BaseButton :disabled="number < 1 || number > 10" text="add to cart" @click="addToCart" />
+
+								<BaseButton
+									:disabled="number < 1 || number > 10"
+									text="add to cart"
+									@click="addToCart"
+								/>
 							</div>
 
-              <transition
-                enter-from-class="opacity-0 -translate-y-full"
-                leave-to-class="opacity-0 -translate-y-full"
-                enter-active-class="transition-all duration-300"
-                leave-active-class="transition-all duration-300"
-              >
-                <div v-show="confirmMessage" class="absolute -bottom-12 flex items-center gap-2 text-emerald-500 text-[0.875rem] border border-emerald-500 px-2 py-1 rounded z-0">
-                  <IconCheck />
-                  Product(s) added to cart
-                </div>
-              </transition>
+							<BaseMessageTransition>
+								<div
+									v-show="confirmMessage"
+									class="absolute -bottom-12 flex items-center gap-2 text-emerald-500 text-[0.875rem] border border-emerald-500 px-2 py-1 rounded z-0"
+								>
+									<IconCheck />
+									Product(s) added to cart
+								</div>
+							</BaseMessageTransition>
+							<BaseMessageTransition>
+								<div
+									v-show="maxMessage"
+									class="absolute -bottom-12 flex items-center gap-2 text-error-red text-[0.875rem] border border-error-red px-2 py-1 rounded"
+								>
+									<IconCancel />
+									Limited to 10 items per client
+								</div>
+							</BaseMessageTransition>
 						</div>
 					</div>
 				</section>
@@ -103,7 +135,9 @@ useHead({
 							{{ feature }}
 						</p>
 					</div>
-					<div class="flex flex-col sm:max-lg:flex-row gap-6 sm:gap-8 sm:max-lg:0">
+					<div
+						class="flex flex-col sm:max-lg:flex-row gap-6 sm:gap-8 sm:max-lg:0"
+					>
 						<h3 class="max-sm:text-xl sm:max-lg:flex-1">In the box</h3>
 						<div class="sm:max-lg:flex-1 flex flex-col gap-2">
 							<div
@@ -111,9 +145,7 @@ useHead({
 								:key="i"
 								class="flex gap-4"
 							>
-								<span class="text-terracotta font-bold">
-                  {{ number }}x
-                </span>
+								<span class="text-terracotta font-bold"> {{ number }}x </span>
 								<p>{{ item }}</p>
 							</div>
 						</div>
@@ -145,9 +177,9 @@ useHead({
 
 				<!-- You May Also Like -->
 				<ClientOnly placeholder="Loading...">
-          <RecomendationCards :currentProductId="product.id" />
-        </ClientOnly>
-      </template>
+					<RecomendationCards :currentProductId="product.id" />
+				</ClientOnly>
+			</template>
 		</NuxtLayout>
 	</div>
 </template>
