@@ -78,4 +78,16 @@ section {
 	.behind-bar {
 		@apply absolute z-0 -top-[6rem] left-0 w-full h-[6rem] bg-almost-black;
 	}
+
+  .hamburger-bar {
+    @apply w-4 h-[3px] absolute left-0 bg-white block transition-all duration-300 ease-expo
+  }
+
+  .hamburger-before {
+    @apply -top-[200%] origin-top-left
+  }
+
+  .hamburger-after {
+    @apply -bottom-[200%] origin-bottom-left
+  }
 }

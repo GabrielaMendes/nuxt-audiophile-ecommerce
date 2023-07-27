@@ -75,11 +75,11 @@ watch(y, (newValue, oldValue) => {
 			<button
 				ref="menuButton"
 				:disabled="modalCart"
-				@click="toggleNavModal"
-				class="lg:hidden"
+				@click.prevent="toggleNavModal"
+				class="lg:hidden w-5 h-5"
 			>
-				<IconHamburger aria-hidden="true" />
-				<span class="hidden">Menu</span>
+				<IconHamburgerToClose v-model="modalNav" aria-hidden="true" />
+        <span class="hidden">Menu</span>
 			</button>
 
 			<NuxtLink to="/" class="sm:max-lg:mr-auto">
