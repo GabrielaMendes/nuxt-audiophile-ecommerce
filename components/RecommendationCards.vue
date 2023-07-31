@@ -11,7 +11,7 @@ const recomendedProducts = getMultipleRandom(
 	products.filter((product) => {
 		return (
 			product.id !== props.currentProductId &&
-			product.images.desktop.recomendation
+			product.images.desktop.recommendation
 		);
 	}),
 	3
@@ -30,7 +30,7 @@ const recomendedProducts = getMultipleRandom(
 				class="flex-1"
 			>
 				<NuxtImg
-					:src="product.images[device].recomendation"
+					:src="product.images[device].recommendation"
 					alt="Product picture"
 					class="w-full mx-auto sm:max-w-[18rem] lg:max-w-[22rem] rounded-lg"
 				/>
