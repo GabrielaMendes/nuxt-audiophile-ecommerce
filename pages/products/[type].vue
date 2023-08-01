@@ -1,22 +1,25 @@
 <script setup>
+const { device } = useDevice();
 const { toTitleCase } = useUtilities();
-const { products } = useProducts();
 
 const route = useRoute();
-const category = route.params.type;
+const category = route.params.type.toLowerCase();
 
-const productList = products.filter((product) => {
-	return product.category === category;
+const { data: productList } = await useFetch(`/api/prisma/get-all-products`);
+
+productList.value = productList.value.filter((product) => {
+	return product.category.toLowerCase() === category;
 });
 
-if (productList.length === 0) {
+if (productList.value.length === 0) {
 	throw createError({
 		statusCode: 404,
 		message: `${toTitleCase(category)} products not found`,
 	});
 }
 
-const { device } = useDevice();
+const config = useRuntimeConfig();
+const previewBaseUrl = `${config.public.supabase.url}/storage/v1/object/public/products-images`;
 
 useHead({
 	title: `${toTitleCase(category)} | audiophile`,
@@ -40,7 +43,7 @@ useHead({
 					class="flex flex-col lg:flex-row lg:even:flex-row-reverse items-center justify-between gap-8 sm:gap-14 lg:gap-28 first:max-sm:mt-16"
 				>
 					<NuxtImg
-						:src="product.images[device].preview"
+						:src="`${previewBaseUrl}/${product.images}/${device}/image-category-page-preview.jpg`"
 						alt="Product preview picture"
 						class="lg:max-w-[33.75rem] rounded-md"
 					/>
