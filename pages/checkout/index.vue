@@ -127,17 +127,17 @@ useHead({
 						<div class="subtitle mt-8 sm:mt-14 mb-4">Shipping Info</div>
 						<FormKit
 							type="text"
-							name="adress"
-							id="adress"
+							name="address"
+							id="address"
 							label="Your Address"
 							placeholder="1137 Williams Avenue"
-							validation="required"
+							validation="required|length:3,100"
 						/>
 						<div class="sm:grid-form sm:mt-5">
 							<FormKit
 								type="text"
-								name="zip"
-								id="zip"
+								name="zipcode"
+								id="zipcode"
 								label="Zip Code"
 								placeholder="10001"
 								validation="required|matches:/\d{5}/"
