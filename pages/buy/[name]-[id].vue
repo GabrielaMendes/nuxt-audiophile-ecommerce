@@ -1,15 +1,22 @@
 <script setup>
 const { device } = useDevice();
 const { addItem } = useCartStore();
+const loadingStore = useLoadingStore();
+
+const config = useRuntimeConfig();
+const route = useRoute();
 
 const confirmMessage = ref(false);
 const maxMessage = ref(false);
 
-const { products } = useProducts();
-const route = useRoute();
+const { data: product } = await useFetch(
+	`/api/prisma/get-product-by-id/${route.params.id}`
+);
 
-const product = products.find((product) => {
-	return product.id === parseInt(route.params.id);
+loadingStore.isLoading = false;
+
+const productImgUrl = computed(() => {
+	return `${config.public.supabase.url}/storage/v1/object/public/products-images/${product.value.images}/${device.value}`;
 });
 
 const number = ref(1);
@@ -35,7 +42,7 @@ const addToCart = () => {
 
 	if (success) {
 		confirmMessage.value = true;
-    maxMessage.value = false;
+		maxMessage.value = false;
 		number.value = 1;
 		setTimeout(() => {
 			confirmMessage.value = false;
@@ -44,7 +51,7 @@ const addToCart = () => {
 	}
 
 	maxMessage.value = true;
-  confirmMessage.value = false;
+	confirmMessage.value = false;
 	setTimeout(() => {
 		maxMessage.value = false;
 	}, 3000);
@@ -67,7 +74,7 @@ useHead({
 						class="flex max-sm:flex-col max-sm:items-start items-center justify-between gap-8 md:gap-20 lg:gap-28"
 					>
 						<NuxtImg
-							:src="product.images[device].product"
+							:src="`${productImgUrl}/image-product.jpg`"
 							alt="Product picture"
 							class="flex-1 w-full max-w-full sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md"
 						/>
@@ -153,22 +160,22 @@ useHead({
 				</section>
 
 				<!-- Gallery -->
-				<section class="flex max-sm:flex-col gap-6">
+				<section class="flex justify-center max-sm:flex-col gap-6">
 					<div class="flex flex-col gap-6">
 						<NuxtImg
-							:src="product.images[device].gallery1"
+							:src="`${productImgUrl}/image-gallery-1.jpg`"
 							alt="Product gallery picture"
 							class="h-full w-full overflow-hidden rounded-md"
 						/>
 						<NuxtImg
-							:src="product.images[device].gallery2"
+							:src="`${productImgUrl}/image-gallery-2.jpg`"
 							alt="Product gallery picture"
 							class="h-full w-full overflow-hidden rounded-md"
 						/>
 					</div>
 					<div>
 						<NuxtImg
-							:src="product.images[device].gallery3"
+							:src="`${productImgUrl}/image-gallery-3.jpg`"
 							alt="Product gallery picture"
 							class="h-full w-full overflow-hidden rounded-md"
 						/>
@@ -177,7 +184,7 @@ useHead({
 
 				<!-- You May Also Like -->
 				<ClientOnly placeholder="Loading...">
-					<RecomendationCards :currentProductId="product.id" />
+					<RecommendationCards :currentProductId="product.id" />
 				</ClientOnly>
 			</template>
 		</NuxtLayout>
