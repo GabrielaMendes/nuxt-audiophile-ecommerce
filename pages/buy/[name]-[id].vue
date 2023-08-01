@@ -19,6 +19,11 @@ const productImgUrl = computed(() => {
 	return `${config.public.supabase.url}/storage/v1/object/public/products-images/${product.value.images}/${device.value}`;
 });
 
+const loadingImg = ref(true);
+const onImgLoad = () => {
+	loadingImg.value = false;
+};
+
 const number = ref(1);
 const increment = () => {
 	if (number.value < 10) {
@@ -73,10 +78,19 @@ useHead({
 					<div
 						class="flex max-sm:flex-col max-sm:items-start items-center justify-between gap-8 md:gap-20 lg:gap-28"
 					>
-						<NuxtImg
+						<div
+							v-if="loadingImg"
+							class="flex items-center justify-center flex-1 w-full max-w-full sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md"
+						>
+							<IconLoading />
+						</div>
+						
+            <NuxtImg
+							v-show="!loadingImg"
 							:src="`${productImgUrl}/image-product.jpg`"
 							alt="Product picture"
 							class="flex-1 w-full max-w-full sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md"
+							@load="onImgLoad"
 						/>
 
 						<div class="relative flex-1 flex flex-col items-start">
