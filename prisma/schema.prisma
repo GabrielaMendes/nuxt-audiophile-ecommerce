@@ -30,6 +30,7 @@ model OrderItem {
   price       Int
   orderId     Int
   productId   Int
+  qty         Int
   order       Orders     @relation(fields: [orderId], references: [id])
   product     Products   @relation(fields: [productId], references: [id])
 }
