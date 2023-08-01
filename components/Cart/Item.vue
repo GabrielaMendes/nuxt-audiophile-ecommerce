@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
 	item: Object,
   summary: {
     type: Boolean,
@@ -8,13 +8,16 @@ defineProps({
 });
 
 const { addItem, removeItem } = useCartStore();
+
+const config = useRuntimeConfig();
+const cartImgUrl = `${config.public.supabase.url}/storage/v1/object/public/products-images/${props.item.images}/image-cart.jpg`;
 </script>
 
 <template>
 	<div class="items-center justify-between" :class="{flex: !summary}">
 		<div class="flex items-center gap-4">
 			<NuxtImg
-				:src="item.images.cart"
+				:src="cartImgUrl"
 				alt="Product picture"
 				class="w-16 rounded-lg"
 			/>

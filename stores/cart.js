@@ -24,7 +24,6 @@ export const useCartStore = defineStore(
           ...product,
           qty,
         });
-
         return true;
       }
       

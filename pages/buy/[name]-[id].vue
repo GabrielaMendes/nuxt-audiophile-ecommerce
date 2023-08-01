@@ -38,7 +38,7 @@ watch(number, (newValue) => {
 });
 
 const addToCart = () => {
-	const success = addItem(product, number.value);
+	const success = addItem(product.value, number.value);
 
 	if (success) {
 		confirmMessage.value = true;
