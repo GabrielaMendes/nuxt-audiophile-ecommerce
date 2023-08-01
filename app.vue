@@ -1,11 +1,20 @@
 <script setup>
+const loadingStore = useLoadingStore();
 const scrollStore = useScrollStore();
-const { scrollLock } = storeToRefs(scrollStore);
+const route = useRoute()
+
+onMounted(() => {
+    loadingStore.isLoading = true
+})
+
+watch(() => route.fullPath, () => {
+    loadingStore.isLoading = true
+})
 
 useHead(() => {
 	return {
 		bodyAttrs: {
-			class: scrollLock.value ? "overflow-hidden" : "[overflow:overlay]",
+			class: scrollStore.scrollLock ? "overflow-hidden" : "[overflow:overlay]",
 		},
 	};
 });
