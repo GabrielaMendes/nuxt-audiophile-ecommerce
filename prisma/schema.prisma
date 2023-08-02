@@ -20,6 +20,8 @@ model Orders {
   city        String
   country     String
   payment     String
+  shipping    Int
+  vat         Int
   status      String    @default("Created")
   createdAt   DateTime? @default(now()) @db.Timestamptz(6)
   orderItem   OrderItem[]
