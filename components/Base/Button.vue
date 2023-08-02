@@ -11,6 +11,10 @@
 		text: {
       type: String,
       default: "See Product",
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     }
 	})
 </script>
@@ -24,6 +28,7 @@
       'border-[1px] border-almost-black hover:bg-almost-black hover:text-white': !filled,
     }"
 	>
+    <IconLoading v-if="loading" class="absolute scale-[.6] top-1" />
 		{{ text }}
 	</button>
 </template>
