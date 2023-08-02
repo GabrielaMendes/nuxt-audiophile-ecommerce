@@ -1,7 +1,20 @@
 <script setup>
+import { reset } from "@formkit/core";
+
+const { toggleScrollLock } = useScrollStore();
+
 const cartStore = useCartStore();
 const { cartItems, totalPrice } = storeToRefs(cartStore);
 
+const backToHome = () => {
+	cartStore.removeAll();
+	finish.value = false;
+	toggleScrollLock();
+	navigateTo("/");
+};
+
+const shipping = ref(50);
+const vat = ref(1079);
 const expenses = computed(() => [
 	{
 		name: "Total",
@@ -9,11 +22,11 @@ const expenses = computed(() => [
 	},
 	{
 		name: "Shipping",
-		value: 50,
+		value: shipping.value,
 	},
 	{
 		name: "Vat (included)",
-		value: 1079,
+		value: vat.value,
 	},
 ]);
 
@@ -23,17 +36,35 @@ const grandTotal = computed(() => {
 
 const payment = ref("eMoney");
 
-const finish = ref(false);
-const finishOrder = () => {
-	finish.value = true;
-	toggleScrollLock();
-};
+const checkoutForm = ref(null);
 
-const backToHome = () => {
-	cartStore.removeAll();
-	finish.value = false;
-	toggleScrollLock();
-	navigateTo("/");
+const finish = ref(false);
+const isSubmmiting = ref(false);
+const errorMessage = ref("");
+
+const finishOrder = async (values) => {
+	const body = {
+		...values,
+		shipping: shipping.value,
+		vat: vat.value,
+		items: cartItems.value,
+	};
+
+  isSubmmiting.value = true;
+	try {
+		const response = await $fetch("/api/prisma/create-order", {
+			method: "post",
+			body,
+		});
+    
+		finish.value = true;
+		toggleScrollLock();
+    isSubmmiting.value = false;
+	} catch (error) {
+		errorMessage.value = error.statusMessage;
+    isSubmmiting.value = false;
+	}
+
 };
 
 useHead({
@@ -61,10 +92,10 @@ useHead({
 			<!-- Checkout -->
 			<FormKit
 				v-else
-				@submit.prevent="finishOrder"
 				type="form"
+				ref="checkoutForm"
 				:actions="false"
-				#default="{ state: { valid } }"
+				#default="{ value, state: { valid } }"
 				:config="{
 					classes: {
 						outer: 'mb-5 sm:mb-1 relative',
@@ -104,7 +135,7 @@ useHead({
 								label="Email Adress"
 								placeholder="alexei@mail.com"
 								validation="required|email|length:3,100"
-                :validation-messages="{
+								:validation-messages="{
 									length: 'Field length is invalid.',
 								}"
 							/>
@@ -118,7 +149,7 @@ useHead({
 								v-maska
 								data-maska="(###) ###-####"
 								inputmode="numeric"
-                :validation-messages="{
+								:validation-messages="{
 									matches: 'Invalid phone number.',
 								}"
 							/>
@@ -155,7 +186,7 @@ useHead({
 								label="City"
 								placeholder="New York"
 								validation="required|alpha_spaces|length:2,100"
-                :validation-messages="{
+								:validation-messages="{
 									length: 'Field length is invalid.',
 								}"
 							/>
@@ -166,7 +197,7 @@ useHead({
 								label="Country"
 								placeholder="United States"
 								validation="required|alpha_spaces|length:2,50"
-                :validation-messages="{
+								:validation-messages="{
 									length: 'Field length is invalid.',
 								}"
 							/>
@@ -176,6 +207,7 @@ useHead({
 						<FormKit
 							v-model="payment"
 							type="radio"
+							name="payment"
 							label="Payment Method"
 							:options="{
 								eMoney: 'e-Money',
@@ -250,10 +282,12 @@ useHead({
 							</div>
 							<!-- Continue Button -->
 							<BaseButton
-								:disabled="!valid"
+								:disabled="!valid || isSubmmiting"
 								type="submit"
+								@click.prevent="finishOrder(value)"
 								:text="payment === 'eMoney' ? 'Continue & Pay' : 'Continue'"
-								class="w-full mt-9"
+								:loading="isSubmmiting"
+                class="w-full mt-9 relative"
 							/>
 						</div>
 					</div>
