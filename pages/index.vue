@@ -4,10 +4,10 @@ useHead({
 });
 
 const { device } = useDevice();
-const { products } = useProducts();
+const { data: products } = await useFetch(`/api/prisma/get-all-products`);
 
 const featured = ["xx99 mark ii", "zx9", "zx7", "yx1"];
-const featuredProducts = products.filter((product) => {
+const featuredProducts = products.value.filter((product) => {
 	return featured.some((p) =>
 		product.name.toLowerCase().includes(p.toLowerCase())
 	);
