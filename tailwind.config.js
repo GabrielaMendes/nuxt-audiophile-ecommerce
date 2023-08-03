@@ -119,6 +119,9 @@ module.exports = {
 				"dark-gray": "#4C4C4C",
 				"almost-black": "#101010",
 			},
+      scale: {
+        '350': '3.5',
+      },
 			transitionTimingFunction: {
 				expo: "cubic-bezier(1, 0, 0, 1)",
 			},
