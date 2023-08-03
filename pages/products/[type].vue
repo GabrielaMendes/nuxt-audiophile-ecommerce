@@ -11,6 +11,9 @@ productList.value = productList.value.filter((product) => {
 	return product.category.toLowerCase() === category;
 });
 
+const loadingStore = useLoadingStore()
+setTimeout(() => loadingStore.isLoading = false, 300)
+
 if (productList.value.length === 0) {
 	throw createError({
 		statusCode: 404,

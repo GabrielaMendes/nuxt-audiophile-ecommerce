@@ -1,7 +1,8 @@
 <script setup>
-import { reset } from "@formkit/core";
-
 const { toggleScrollLock } = useScrollStore();
+
+const loadingStore = useLoadingStore()
+setTimeout(() => loadingStore.isLoading = false, 300)
 
 const cartStore = useCartStore();
 const { cartItems, totalPrice } = storeToRefs(cartStore);

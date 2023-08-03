@@ -13,7 +13,7 @@ const { data: product } = await useFetch(
 	`/api/prisma/get-product-by-id/${route.params.id}`
 );
 
-loadingStore.isLoading = false;
+setTimeout(() => loadingStore.isLoading = false, 300)
 
 const productImgUrl = computed(() => {
 	return `${config.public.supabase.url}/storage/v1/object/public/products-images/${product.value.images}/${device.value}`;

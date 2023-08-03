@@ -1,15 +1,18 @@
 <script setup>
 const loadingStore = useLoadingStore();
 const scrollStore = useScrollStore();
-const route = useRoute()
+const route = useRoute();
 
 onMounted(() => {
-    loadingStore.isLoading = true
-})
+	loadingStore.isLoading = true;
+});
 
-watch(() => route.fullPath, () => {
-    loadingStore.isLoading = true
-})
+watch(
+	() => route.fullPath,
+	() => {
+		loadingStore.isLoading = true;
+	}
+);
 
 useHead(() => {
 	return {
@@ -18,16 +21,23 @@ useHead(() => {
 		},
 	};
 });
-
 </script>
 
 <template>
 	<div>
 		<TheNavbar />
 
-		<NuxtPage />
+		<div 
+      v-if="loadingStore.isLoading"
+      class="w-full h-[80svh] flex justify-center items-center"
+    >
+			<IconLoading class="scale-125 sm:scale-150 lg:scale-250" />
+		</div>
 
-		<TheFooter />
+		<div v-show="!loadingStore.isLoading">
+      <NuxtPage />
+      <TheFooter />
+    </div>
 	</div>
 </template>
 

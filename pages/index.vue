@@ -3,8 +3,11 @@ useHead({
 	title: "Home | audiophile",
 });
 
+const loadingStore = useLoadingStore();
 const { device } = useDevice();
+
 const { data: products } = await useFetch(`/api/prisma/get-all-products`);
+setTimeout(() => loadingStore.isLoading = false, 300)
 
 const featured = ["xx99 mark ii", "zx9", "zx7", "yx1"];
 const featuredProducts = products.value.filter((product) => {
