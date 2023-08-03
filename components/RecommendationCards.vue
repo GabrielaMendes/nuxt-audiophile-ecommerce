@@ -1,5 +1,4 @@
 <script setup>
-const { products } = useProducts();
 const { device } = useDevice();
 const { getMultipleRandom } = useUtilities();
 
@@ -7,15 +6,19 @@ const props = defineProps({
 	currentProductId: Number,
 });
 
+const { data: products } = await useFetch(`/api/prisma/get-all-products`);
+
 const recomendedProducts = getMultipleRandom(
-	products.filter((product) => {
+	products.value.filter((product) => {
 		return (
-			product.id !== props.currentProductId &&
-			product.images.desktop.recommendation
+			product.id !== props.currentProductId
 		);
 	}),
 	3
 );
+
+const config = useRuntimeConfig();
+const imgBaseUrl = `${config.public.supabase.url}/storage/v1/object/public/products-images`;
 </script>
 
 <template>
@@ -30,7 +33,7 @@ const recomendedProducts = getMultipleRandom(
 				class="flex-1"
 			>
 				<NuxtImg
-					:src="product.images[device].recommendation"
+					:src="`${imgBaseUrl}/${product.images}/${device}/image-recommendation.jpg`"
 					alt="Product picture"
 					class="w-full mx-auto sm:max-w-[18rem] lg:max-w-[22rem] rounded-lg"
 				/>
