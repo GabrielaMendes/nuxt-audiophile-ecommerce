@@ -19,6 +19,10 @@ const recomendedProducts = getMultipleRandom(
 
 const config = useRuntimeConfig();
 const imgBaseUrl = `${config.public.supabase.url}/storage/v1/object/public/products-images`;
+
+const goToRecommendation = (name, id) => {
+  navigateTo(`/buy/${name}-${id}`)
+}
 </script>
 
 <template>
@@ -35,14 +39,15 @@ const imgBaseUrl = `${config.public.supabase.url}/storage/v1/object/public/produ
 				<NuxtImg
 					:src="`${imgBaseUrl}/${product.images}/${device}/image-recommendation.jpg`"
 					alt="Product picture"
-					class="w-full mx-auto sm:max-w-[18rem] lg:max-w-[22rem] rounded-lg"
+          @click="goToRecommendation(product.name, product.id)"
+					class="w-full mx-auto sm:max-w-[18rem] lg:max-w-[22rem] rounded-lg cursor-pointer hover:shadow-md transition-shadow duration-250"
 				/>
 				<h5 class="mt-6 sm:mt-8">
 					{{ product.name.replace("Headphones", "").replace("Earphones", "") }}
 				</h5>
 				<BaseButton
 					class="mt-6 sm:mt-8"
-					@click="navigateTo(`/buy/${product.name}-${product.id}`)"
+					@click.prevent="goToRecommendation(product.name, product.id)"
 				/>
 			</div>
 		</div>
