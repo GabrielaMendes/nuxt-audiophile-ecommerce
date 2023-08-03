@@ -100,7 +100,7 @@ useHead({
 					classes: {
 						outer: 'mb-5 sm:mb-1 relative',
 						label: 'block font-bold text-[0.75rem] mb-1',
-						message: 'text-error-red text-[0.75rem] absolute top-1 right-0',
+						message: 'text-error-red text-[0.75rem] absolute right-0',
 						input:
 							'w-full caret-terracotta text-[0.875rem] bg-off-white py-3 px-6 focus:outline-none rounded-md border border-[#CFCFCF] focus:border-terracotta',
 						inner: '',
