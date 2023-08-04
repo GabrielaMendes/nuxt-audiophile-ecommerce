@@ -5,7 +5,7 @@ const { toTitleCase } = useUtilities();
 const route = useRoute();
 const category = route.params.type.toLowerCase();
 
-const { data: productList } = await useFetch(`/api/prisma/get-all-products`);
+const { data: productList } = await useFetchAllProducts();
 
 productList.value = productList.value.filter((product) => {
 	return product.category.toLowerCase() === category;

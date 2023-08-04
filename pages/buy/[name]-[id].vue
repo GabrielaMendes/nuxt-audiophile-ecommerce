@@ -9,9 +9,7 @@ const route = useRoute();
 const confirmMessage = ref(false);
 const maxMessage = ref(false);
 
-const { data: product } = await useFetch(
-	`/api/prisma/get-product-by-id/${route.params.id}`
-);
+const { data: product } = await useFetchProduct(route.params.id);
 
 setTimeout(() => loadingStore.isLoading = false, 300)
 
