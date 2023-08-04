@@ -11,6 +11,10 @@ const maxMessage = ref(false);
 
 const { data: product } = await useFetchProduct(route.params.id);
 
+if (product.value.name !== route.params.name) {
+  navigateTo(`buy/${product.value.name}-${product.value.id}`)
+}
+
 setTimeout(() => loadingStore.isLoading = false, 300)
 
 const productImgUrl = computed(() => {
