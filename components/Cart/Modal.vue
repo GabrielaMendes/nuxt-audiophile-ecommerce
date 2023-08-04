@@ -19,7 +19,7 @@ const onGoBack = () => {
 		<div
 			class="rounded-lg w-full overflow-y-auto bg-off-white content-container p-8"
 		>
-			<div v-if="totalItems > 0">
+			<div v-if="totalItems > 0" v-auto-animate>
 				<!-- Header -->
 				<div class="flex justify-between mb-8">
 					<h6>Cart ({{ totalItems }})</h6>

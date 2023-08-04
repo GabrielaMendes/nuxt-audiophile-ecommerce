@@ -1,8 +1,8 @@
 <script setup>
 const { toggleScrollLock } = useScrollStore();
 
-const loadingStore = useLoadingStore()
-setTimeout(() => loadingStore.isLoading = false, 300)
+const loadingStore = useLoadingStore();
+setTimeout(() => (loadingStore.isLoading = false), 300);
 
 const cartStore = useCartStore();
 const { cartItems, totalPrice } = storeToRefs(cartStore);
@@ -51,21 +51,20 @@ const finishOrder = async (values) => {
 		items: cartItems.value,
 	};
 
-  isSubmmiting.value = true;
+	isSubmmiting.value = true;
 	try {
 		const response = await $fetch("/api/prisma/create-order", {
 			method: "post",
 			body,
 		});
-    
+
 		finish.value = true;
 		toggleScrollLock();
-    isSubmmiting.value = false;
+		isSubmmiting.value = false;
 	} catch (error) {
 		errorMessage.value = error.statusMessage;
-    isSubmmiting.value = false;
+		isSubmmiting.value = false;
 	}
-
 };
 
 useHead({
@@ -221,37 +220,39 @@ useHead({
 							options-class="col-start-2 flex flex-col gap-4"
 							legend-class="block sm:float-left mb-2 font-bold text-[0.75rem] mb-1 formkit-invalid:text-[#CD2C2C]"
 						/>
-						<div v-if="payment === 'eMoney'" class="sm:grid-form mt-5">
-							<FormKit
-								type="text"
-								name="eMoneyNumber"
-								id="eMoneyNumber"
-								label="e-Money Number"
-								placeholder="238521993"
-								validation="required|number"
-							/>
-							<FormKit
-								type="text"
-								name="eMoneyPin"
-								id="eMoneyPin"
-								label="e-Money Pin"
-								placeholder="238521993"
-								validation="required|number"
-								inputmode="numeric"
-							/>
-						</div>
-						<div
-							v-else
-							class="mt-7 flex items-center max-sm:flex-col gap-8 max-sm:gap-4"
-						>
-							<IconCash class="shrink-0 max-sm:mx-auto" />
-							<p class="max-sm:text-center">
-								The 'Cash on Delivery' option enables you to pay in cash when
-								our delivery courier arrives at your residence. Just make sure
-								your address is correct so that your order will not be
-								cancelled.
-							</p>
-						</div>
+						<div v-auto-animate="{easing: 'ease-in-out'}">
+              <div v-if="payment === 'eMoney'" class="sm:grid-form mt-5">
+                <FormKit
+                  type="text"
+                  name="eMoneyNumber"
+                  id="eMoneyNumber"
+                  label="e-Money Number"
+                  placeholder="238521993"
+                  validation="required|number"
+                />
+                <FormKit
+                  type="text"
+                  name="eMoneyPin"
+                  id="eMoneyPin"
+                  label="e-Money Pin"
+                  placeholder="238521993"
+                  validation="required|number"
+                  inputmode="numeric"
+                />
+              </div>
+              <div
+                v-else
+                class="mt-7 flex items-center max-sm:flex-col gap-8 max-sm:gap-4"
+              >
+                <IconCash class="shrink-0 max-sm:mx-auto" />
+                <p class="max-sm:text-center">
+                  The 'Cash on Delivery' option enables you to pay in cash when
+                  our delivery courier arrives at your residence. Just make sure
+                  your address is correct so that your order will not be
+                  cancelled.
+                </p>
+              </div>
+            </div>
 					</div>
 					<!-- Summary -->
 					<div
@@ -288,7 +289,7 @@ useHead({
 								@click.prevent="finishOrder(value)"
 								:text="payment === 'eMoney' ? 'Continue & Pay' : 'Continue'"
 								:loading="isSubmmiting"
-                class="w-full mt-9 relative"
+								class="w-full mt-9 relative"
 							/>
 						</div>
 					</div>
