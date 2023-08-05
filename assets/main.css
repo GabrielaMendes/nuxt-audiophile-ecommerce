@@ -54,17 +54,26 @@ section {
 	@apply mx-auto px-6 sm:px-8 max-w-[1200px];
 }
 
+@layer utilities {
+  .grid-form {
+    @apply grid grid-cols-2 gap-4;
+  }
+
+  .focus-ring {
+    @apply rounded-sm ring-2 ring-offset-2 ring-terracotta ring-offset-off-white
+  }
+}
+
 @layer base {
+  * {
+    @apply focus:outline-none focus-visible:focus-ring;
+  }
+
 	input[type="number"] {
 		@apply focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
 	}
 }
 
-@layer utilities {
-	.grid-form {
-		@apply grid grid-cols-2 gap-4;
-	}
-}
 
 @layer components {
 	.circles {

@@ -71,21 +71,23 @@ watch(y, (newValue, oldValue) => {
 		class="sticky top-0 bg-almost-black text-white z-50 transition-transform duration-300"
 		:class="{ '-translate-y-full': isScrollingDown }"
 	>
-		<div class="content-container py-8 flex gap-10 justify-between">
+		<div class="content-container py-8 flex gap-8 justify-between items-center">
 			<button
 				ref="menuButton"
 				:disabled="modalCart"
 				@click.prevent="toggleNavModal"
-				class="lg:hidden w-5 h-5"
+        class="lg:hidden h-5 transition-all duration-300"
+        :class="modalNav ? 'w-4 mr-1' : 'w-5'"
 			>
 				<IconHamburgerToClose v-model="modalNav" aria-hidden="true" />
         <span class="hidden">Menu</span>
 			</button>
 
-			<NuxtLink to="/" class="sm:max-lg:mr-auto">
+			<NuxtLink tabindex="-1" to="/" class="sm:max-lg:mr-auto">
 				<IconLogo aria-hidden="true" />
 				<span class="hidden">audiophile</span>
 			</NuxtLink>
+
 			<NavLinks class="flex gap-8 max-lg:hidden" />
 			<button
 				ref="cartButton"
@@ -135,3 +137,9 @@ watch(y, (newValue, oldValue) => {
 		</BaseOverlay>
 	</div>
 </template>
+
+<style scoped>
+a, button {
+  @apply focus-visible:ring-offset-almost-black;
+}
+</style>

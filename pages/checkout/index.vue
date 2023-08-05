@@ -2,7 +2,7 @@
 const { toggleScrollLock } = useScrollStore();
 
 const loadingStore = useLoadingStore();
-setTimeout(() => (loadingStore.isLoading = false), 300);
+setTimeout(() => (loadingStore.isLoading = false), 200);
 
 const cartStore = useCartStore();
 const { cartItems, totalPrice } = storeToRefs(cartStore);
@@ -36,6 +36,14 @@ const grandTotal = computed(() => {
 });
 
 const payment = ref("eMoney");
+const changePayment = () => {
+  if (payment.value === "eMoney") {
+    payment.value = "cash";
+    return;
+  }
+
+  payment.value = "eMoney";
+}
 
 const checkoutForm = ref(null);
 
@@ -103,7 +111,6 @@ useHead({
 						message: 'text-error-red text-[0.75rem] absolute right-0',
 						input:
 							'w-full caret-terracotta text-[0.875rem] bg-off-white py-3 px-6 focus:outline-none rounded-md border border-[#CFCFCF] focus:border-terracotta',
-						inner: '',
 						options: 'text-[0.875rem]',
 					},
 				}"
@@ -111,7 +118,7 @@ useHead({
 				<div class="flex items-start max-lg:flex-col gap-8">
 					<!-- Form -->
 					<div
-						class="rounded-md w-full overflow-y-auto bg-off-white p-8 lg:p-12 shadow-[0_5px_18px_9px_rgba(0,0,0,0.02)]"
+						class="rounded-md w-full bg-off-white p-8 lg:p-12 shadow-[0_5px_18px_9px_rgba(0,0,0,0.02)]"
 					>
 						<h3 class="max-sm:text-2xl mt-2">Checkout</h3>
 						<!-- Billing -->
@@ -254,6 +261,7 @@ useHead({
               </div>
             </div>
 					</div>
+
 					<!-- Summary -->
 					<div
 						class="rounded-md w-full overflow-y-auto bg-off-white content-container p-8 lg:max-w-[22rem] shadow-[0_5px_18px_9px_rgba(0,0,0,0.02)]"
@@ -310,5 +318,9 @@ useHead({
 
 [data-invalid] .formkit-label {
 	@apply text-error-red;
+}
+
+.formkit-input {
+  @apply focus-visible:ring-0
 }
 </style>

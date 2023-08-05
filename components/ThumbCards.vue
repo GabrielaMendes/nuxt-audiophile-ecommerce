@@ -53,3 +53,9 @@ const onThumbClick = (category) => {
 		</div>
 	</div>
 </template>
+
+<style scoped>
+a, button {
+  @apply focus-visible:ring-offset-very-light-gray;
+}
+</style>

@@ -9,6 +9,6 @@
 
 <style scoped>
 a {
-	@apply text-xs uppercase hover:text-terracotta transition-colors duration-200;
+	@apply text-xs uppercase hover:text-terracotta transition-colors duration-200 focus-visible:ring-offset-almost-black;
 }
 </style>
