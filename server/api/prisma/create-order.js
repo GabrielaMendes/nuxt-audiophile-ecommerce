@@ -46,7 +46,7 @@ const schema = Joi.object({
 	),
 	shipping: Joi.number().required().min(0),
 	vat: Joi.number().required().min(0),
-});
+}).options({ allowUnknown: true });
 
 export default defineEventHandler(async (event) => {
 	const body = await readBody(event);
