@@ -1,4 +1,5 @@
 <script setup>
+import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
 import { useWindowScroll } from "@vueuse/core";
 
 const { toggleScrollLock } = useScrollStore();
@@ -7,25 +8,36 @@ const { device } = useDevice();
 const cartStore = useCartStore();
 const { totalItems } = storeToRefs(cartStore);
 
-const modalNav = ref(false);
-const modalCart = ref(false);
-const someModal = computed(() => modalNav.value || modalCart.value);
+const navModalActive = ref(false);
+const cartModalActive = ref(false);
+const someModal = computed(() => navModalActive.value || cartModalActive.value);
 
 const toggleNavModal = () => {
-	modalNav.value = !modalNav.value;
+	navModalActive.value = !navModalActive.value;
 	toggleScrollLock();
 };
 
 watch(device, (newValue) => {
-	if (newValue === "desktop" && modalNav.value) {
+	if (newValue === "desktop" && navModalActive.value) {
 		toggleNavModal();
 	}
 });
 
 const toggleCartModal = () => {
-	modalCart.value = !modalCart.value;
+	cartModalActive.value = !cartModalActive.value;
 	toggleScrollLock();
 };
+
+const navBar = ref(null);
+const { activate, deactivate } = useFocusTrap(navBar);
+
+watch(someModal, (newValue) => {
+	if (newValue) {
+		activate();
+		return;
+	}
+	deactivate();
+});
 
 const cartModal = ref(null);
 const cartButton = ref(null);
@@ -35,7 +47,7 @@ const menuButton = ref(null);
 onClickOutside(
 	navModal,
 	() => {
-		if (modalNav.value) {
+		if (navModalActive.value) {
 			toggleNavModal();
 		}
 	},
@@ -45,7 +57,7 @@ onClickOutside(
 onClickOutside(
 	cartModal,
 	() => {
-		if (modalCart.value) {
+		if (cartModalActive.value) {
 			toggleCartModal();
 		}
 	},
@@ -68,19 +80,20 @@ watch(y, (newValue, oldValue) => {
 
 <template>
 	<div
+		ref="navBar"
 		class="sticky top-0 bg-almost-black text-white z-50 transition-transform duration-300"
 		:class="{ '-translate-y-full': isScrollingDown }"
 	>
 		<div class="content-container py-8 flex gap-8 justify-between items-center">
 			<button
 				ref="menuButton"
-				:disabled="modalCart"
+				:disabled="cartModalActive"
 				@click.prevent="toggleNavModal"
-        class="lg:hidden h-5 transition-all duration-300"
-        :class="modalNav ? 'w-4 mr-1' : 'w-5'"
+				class="lg:hidden h-5 transition-all duration-300"
+				:class="navModalActive ? 'w-4 mr-1' : 'w-5'"
 			>
-				<IconHamburgerToClose v-model="modalNav" aria-hidden="true" />
-        <span class="hidden">Menu</span>
+				<IconHamburgerToClose v-model="navModalActive" aria-hidden="true" />
+				<span class="hidden">Menu</span>
 			</button>
 
 			<NuxtLink tabindex="-1" to="/" class="sm:max-lg:mr-auto">
@@ -91,7 +104,7 @@ watch(y, (newValue, oldValue) => {
 			<NavLinks class="flex gap-8 max-lg:hidden" />
 			<button
 				ref="cartButton"
-				:disabled="modalNav"
+				:disabled="navModalActive"
 				@click="toggleCartModal"
 				class="relative"
 			>
@@ -109,7 +122,7 @@ watch(y, (newValue, oldValue) => {
 				</transition>
 				<IconCart
 					aria-hidden="true"
-					:class="{ 'pointer-events-none': modalNav }"
+					:class="{ 'pointer-events-none': navModalActive }"
 				/>
 				<span class="hidden">Shopping Cart</span>
 			</button>
@@ -119,7 +132,7 @@ watch(y, (newValue, oldValue) => {
 		<BaseOverlay v-show="someModal" class="top-[5.5625rem]">
 			<!-- Menu Modal -->
 			<div
-				v-show="modalNav"
+				v-show="navModalActive"
 				ref="navModal"
 				class="rounded-b-md mt-0 w-full overflow-x-hidden max-h-[85%] overflow-y-auto bg-off-white content-container pt-28 pb-8"
 			>
@@ -129,7 +142,7 @@ watch(y, (newValue, oldValue) => {
 			<!-- Cart Modal -->
 			<div class="content-container">
 				<CartModal
-					v-show="modalCart"
+					v-show="cartModalActive"
 					ref="cartModal"
 					@close-cart="toggleCartModal"
 				/>
@@ -139,7 +152,8 @@ watch(y, (newValue, oldValue) => {
 </template>
 
 <style scoped>
-a, button {
-  @apply focus-visible:ring-offset-almost-black;
+a,
+button {
+	@apply focus-visible:ring-offset-almost-black;
 }
 </style>

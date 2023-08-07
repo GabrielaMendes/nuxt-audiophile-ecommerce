@@ -1,4 +1,6 @@
 <script setup>
+import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
+
 const { toggleScrollLock } = useScrollStore();
 
 const loadingStore = useLoadingStore();
@@ -8,7 +10,6 @@ const cartStore = useCartStore();
 const { cartItems, totalPrice } = storeToRefs(cartStore);
 
 const backToHome = () => {
-	cartStore.removeAll();
 	finish.value = false;
 	toggleScrollLock();
 	navigateTo("/");
@@ -67,8 +68,9 @@ const finishOrder = async (values) => {
 		});
 
 		finish.value = true;
-		toggleScrollLock();
 		isSubmmiting.value = false;
+    cartStore.removeAll();
+		toggleScrollLock();
 	} catch (error) {
 		errorMessage.value = error.statusMessage;
 		isSubmmiting.value = false;
@@ -306,9 +308,11 @@ useHead({
 		</NuxtLayout>
 
     <Teleport to="body">
-      <BaseOverlay v-if="finish">
-        <ConfirmationModal :grand-total="grandTotal" @back-to-home="backToHome" />
-      </BaseOverlay>
+      <UseFocusTrap v-if="finish">
+        <BaseOverlay>
+          <ConfirmationModal :grand-total="grandTotal" @back-to-home="backToHome" />
+        </BaseOverlay>
+      </UseFocusTrap>
     </Teleport>
 	</div>
 </template>
