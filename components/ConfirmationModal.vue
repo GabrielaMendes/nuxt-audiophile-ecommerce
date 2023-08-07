@@ -13,6 +13,14 @@ const toggleShowLess = () => {
 	showLess.value = !showLess.value;
 };
 
+const itemsToShow = computed(() =>{
+  if (showLess.value) {
+    return [cartItems[0]];
+  }
+
+  return cartItems;
+})
+
 const goBackHome = () => {
   emit("backToHome");
 }
@@ -33,11 +41,10 @@ const goBackHome = () => {
 				>
 					<!-- Items -->
 					<div class="px-7 pb-4 w-full flex flex-col justify-center">
-						<div class="mt-4 mb-2.5">
+						<div v-auto-animate class="mt-4 mb-2.5">
 							<div 
-                v-for="(item, idx) in cartItems"
+                v-for="item in itemsToShow"
                 :key="item.id"
-                v-show="showLess ? idx === 0 : true"
                 class="mt-2"
               >
 								<CartItem :item="item" :summary="true" />
