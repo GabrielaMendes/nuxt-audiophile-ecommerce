@@ -118,7 +118,7 @@ useHead({
 				<div class="flex items-start max-lg:flex-col gap-8">
 					<!-- Form -->
 					<div
-						class="rounded-md w-full bg-off-white p-8 lg:p-12 shadow-[0_5px_18px_9px_rgba(0,0,0,0.02)]"
+						class="rounded-md w-full bg-off-white px-6 py-8 sm:px-8 lg:p-12 shadow-[0_5px_18px_9px_rgba(0,0,0,0.02)]"
 					>
 						<h3 class="max-sm:text-2xl mt-2">Checkout</h3>
 						<!-- Billing -->
@@ -305,9 +305,11 @@ useHead({
 			</FormKit>
 		</NuxtLayout>
 
-		<BaseOverlay v-if="finish">
-			<ConfirmationModal :grand-total="grandTotal" @back-to-home="backToHome" />
-		</BaseOverlay>
+    <Teleport to="body">
+      <BaseOverlay v-if="finish">
+        <ConfirmationModal :grand-total="grandTotal" @back-to-home="backToHome" />
+      </BaseOverlay>
+    </Teleport>
 	</div>
 </template>
 

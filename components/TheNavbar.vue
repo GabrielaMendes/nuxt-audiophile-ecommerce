@@ -116,7 +116,7 @@ watch(y, (newValue, oldValue) => {
 		</div>
 
 		<!-- Overlay -->
-		<BaseOverlay v-show="someModal">
+		<BaseOverlay v-show="someModal" class="top-[5.5625rem]">
 			<!-- Menu Modal -->
 			<div
 				v-show="modalNav"

@@ -19,9 +19,9 @@ const goBackHome = () => {
 </script>
 
 <template>
-	<div class="py-20 px-4 mx-auto max-w-[36rem] max-h-[80%]">
+	<div class="px-4 mx-auto max-w-[36rem] h-full flex items-center justify-center">
 		<div
-			class="w-full rounded-lg overflow-y-auto bg-off-white content-container p-8"
+			class="w-full max-h-[80%] rounded-lg overflow-y-auto bg-off-white content-container p-8"
 		>
 			<div class="flex flex-col gap-6 sm:gap-9">
 				<IconConfirmation />
