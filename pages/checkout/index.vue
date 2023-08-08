@@ -300,14 +300,21 @@ useHead({
 		</NuxtLayout>
 
 		<Teleport to="body">
-			<UseFocusTrap v-if="finish">
-				<BaseOverlay>
-					<ConfirmationModal
-						:grand-total="grandTotal"
-						@back-to-home="backToHome"
-					/>
-				</BaseOverlay>
-			</UseFocusTrap>
+			<transition
+				enter-from-class="opacity-0"
+				enter-active-class="transition-opacity duration-200"
+				leave-active-class="transition-opacity duration-200"
+				leave-to-class="opacity-0"
+			>
+				<UseFocusTrap v-if="finish">
+					<BaseOverlay>
+						<ConfirmationModal
+							:grand-total="grandTotal"
+							@back-to-home="backToHome"
+						/>
+					</BaseOverlay>
+				</UseFocusTrap>
+			</transition>
 		</Teleport>
 	</div>
 </template>

@@ -118,32 +118,37 @@ watch(y, (newValue, oldValue) => {
 						>{{ totalItems }}</span
 					>
 				</transition>
-				<IconCart
-					:class="{ 'pointer-events-none': navModalActive }"
-				/>
+				<IconCart :class="{ 'pointer-events-none': navModalActive }" />
 			</button>
 		</div>
 
 		<!-- Overlay -->
-		<BaseOverlay v-show="someModal" class="top-[5.5625rem]">
-			<!-- Menu Modal -->
-			<div
-				v-show="navModalActive"
-				ref="navModal"
-				class="rounded-b-md mt-0 w-full overflow-x-hidden max-h-[85%] overflow-y-auto bg-off-white content-container pt-28 pb-8"
-			>
-				<ThumbCards @close-modal="toggleNavModal" />
-			</div>
+		<transition
+      enter-from-class="opacity-0"
+      enter-active-class="transition-opacity duration-200"
+      leave-active-class="transition-opacity duration-200"
+      leave-to-class="opacity-0"
+    >
+			<BaseOverlay v-show="someModal" class="top-[5.5625rem]">
+				<!-- Menu Modal -->
+				<div
+					v-show="navModalActive"
+					ref="navModal"
+					class="rounded-b-md mt-0 w-full overflow-x-hidden max-h-[85%] overflow-y-auto bg-off-white content-container pt-28 pb-8"
+				>
+					<ThumbCards @close-modal="toggleNavModal" />
+				</div>
 
-			<!-- Cart Modal -->
-			<div class="content-container">
-				<CartModal
-					v-show="cartModalActive"
-					ref="cartModal"
-					@close-cart="toggleCartModal"
-				/>
-			</div>
-		</BaseOverlay>
+				<!-- Cart Modal -->
+				<div class="content-container">
+					<CartModal
+						v-show="cartModalActive"
+						ref="cartModal"
+						@close-cart="toggleCartModal"
+					/>
+				</div>
+			</BaseOverlay>
+		</transition>
 	</div>
 </template>
 
