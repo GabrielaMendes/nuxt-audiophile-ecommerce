@@ -49,11 +49,11 @@ const goToProduct = (name) => {
 				<ThumbCards class="mt-44" />
 				<section class="flex flex-col gap-7">
 					<div
-						class="relative px-8 py-16 lg:p-28 max-lg:items-center lg:max-h-[35rem] overflow-hidden bg-terracotta text-white rounded-md w-full flex max-lg:flex-col gap-14 sm:gap-[4.5rem] lg:gap-32 after:circles"
+						class="relative px-8 py-16 lg:p-28 max-lg:items-center lg:max-h-[35rem] overflow-hidden bg-terracotta text-white rounded-md w-full flex max-lg:flex-col gap-14 sm:gap-[4.5rem] lg:gap-32 after:circles hover:after:motion-safe:animate-[ping_3s_ease-in-out_infinite]"
 					>
 						<NuxtImg
 							:src="`/images/home/${device}/image-speaker-zx9.png`"
-							alt="Black and white speaker"
+							alt="ZX9 speaker picture"
 							class="w-48 sm:w-52 lg:w-[23.5rem] lg:mt-1 h-full z-10"
 						/>
 						<div
@@ -80,7 +80,7 @@ const goToProduct = (name) => {
 					>
 						<NuxtImg
 							:src="`/images/home/${device}/image-earphones-yx1.jpg`"
-							alt="Black earphones picture"
+							alt="YX1 earphones picture"
 							class="rounded-md w-full h-[12.5rem] object-cover flex-1 sm:h-80"
 						/>
 						<div
