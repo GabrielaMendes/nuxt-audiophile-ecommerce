@@ -1,5 +1,10 @@
 <template>
-	<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+	<svg
+		aria-hidden="true"
+		width="64"
+		height="64"
+		xmlns="http://www.w3.org/2000/svg"
+	>
 		<g fill="none" fill-rule="evenodd">
 			<circle fill="#D87D4A" cx="32" cy="32" r="32" />
 			<path

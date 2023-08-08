@@ -7,8 +7,7 @@
 				class="flex flex-col lg:flex-row gap-10 sm:gap-8 justify-between mt-5 sm:max-lg:mb-8 mb-10"
 			>
 				<NuxtLink tabindex="-1" to="/" class="max-sm:mx-auto">
-					<IconLogo aria-hidden="true" />
-					<span class="hidden">audiophile</span>
+					<IconLogo />
 				</NuxtLink>
 
 				<NavLinks class="flex flex-col gap-4 sm:gap-8 sm:flex-row" />
@@ -36,24 +35,21 @@
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<IconFacebook aria-hidden="true" />
-						<span class="hidden">Facebook</span>
+						<IconFacebook />
 					</a>
 					<a
 						href="https://twitter.com"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<IconTwitter aria-hidden="true" />
-						<span class="hidden">Twitter</span>
+						<IconTwitter />
 					</a>
 					<a
 						href="https://instagram.com"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<IconInstagram aria-hidden="true" />
-						<span class="hidden">Instagram</span>
+						<IconInstagram />
 					</a>
 				</div>
 			</div>
@@ -62,7 +58,8 @@
 </template>
 
 <style scoped>
-a, button {
-  @apply focus-visible:ring-offset-almost-black;
+a,
+button {
+	@apply focus-visible:ring-offset-almost-black;
 }
 </style>

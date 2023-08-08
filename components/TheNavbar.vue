@@ -92,13 +92,11 @@ watch(y, (newValue, oldValue) => {
 				class="lg:hidden h-5 transition-all duration-300"
 				:class="navModalActive ? 'w-4 mr-1' : 'w-5'"
 			>
-				<IconHamburgerToClose v-model="navModalActive" aria-hidden="true" />
-				<span class="hidden">Menu</span>
+				<IconHamburgerToClose v-model="navModalActive" />
 			</button>
 
 			<NuxtLink tabindex="-1" to="/" class="sm:max-lg:mr-auto">
-				<IconLogo aria-hidden="true" />
-				<span class="hidden">audiophile</span>
+				<IconLogo />
 			</NuxtLink>
 
 			<NavLinks class="flex gap-8 max-lg:hidden" />
@@ -121,10 +119,8 @@ watch(y, (newValue, oldValue) => {
 					>
 				</transition>
 				<IconCart
-					aria-hidden="true"
 					:class="{ 'pointer-events-none': navModalActive }"
 				/>
-				<span class="hidden">Shopping Cart</span>
 			</button>
 		</div>
 

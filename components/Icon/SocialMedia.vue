@@ -7,6 +7,7 @@ defineProps({
 
 <template>
   <svg
+    aria-hidden="true"
     class="group"
 		width="24"
 		:height="iconHeight"
