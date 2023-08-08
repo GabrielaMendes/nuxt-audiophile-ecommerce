@@ -32,6 +32,10 @@ const previewBaseUrl = `${config.public.supabase.url}/storage/v1/object/public/p
 useHead({
 	title: `${toTitleCase(category)} | audiophile`,
 });
+
+definePageMeta({
+  scrollToTop: true,
+})
 </script>
 
 <template>

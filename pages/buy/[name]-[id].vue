@@ -67,6 +67,10 @@ const addToCart = () => {
 useHead({
 	title: `${route.params.name} | audiophile`,
 });
+
+definePageMeta({
+  scrollToTop: true,
+})
 </script>
 
 <template>

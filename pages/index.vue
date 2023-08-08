@@ -1,8 +1,4 @@
 <script setup>
-useHead({
-	title: "Home | audiophile",
-});
-
 const loadingStore = useLoadingStore();
 const { device } = useDevice();
 
@@ -11,18 +7,26 @@ setTimeout(() => loadingStore.isLoading = false, 300)
 
 const featured = ["xx99 mark ii", "zx9", "zx7", "yx1"];
 const featuredProducts = products.value.filter((product) => {
-	return featured.some((p) =>
-		product.name.toLowerCase().includes(p.toLowerCase())
+  return featured.some((p) =>
+  product.name.toLowerCase().includes(p.toLowerCase())
 	);
 });
 
 const goToProduct = (name) => {
-	const product = featuredProducts.find((p) => {
-		return p.name.toLowerCase().includes(name.toLowerCase());
+  const product = featuredProducts.find((p) => {
+    return p.name.toLowerCase().includes(name.toLowerCase());
 	});
   
 	navigateTo(`/buy/${product.name}-${product.id}`);
 };
+
+useHead({
+  title: "Home | audiophile",
+});
+
+definePageMeta({
+  scrollToTop: true,
+})
 </script>
 
 <template>

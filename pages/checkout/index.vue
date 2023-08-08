@@ -72,6 +72,10 @@ const finishOrder = async (values) => {
 useHead({
 	title: "Checkout | audiophile",
 });
+
+definePageMeta({
+  scrollToTop: true,
+})
 </script>
 
 <template>
