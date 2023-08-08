@@ -2,78 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	@apply font-body text-base text-almost-black bg-off-white min-w-[20rem];
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	@apply uppercase;
-}
-
-h6 {
-	@apply text-lg;
-}
-h5 {
-	@apply text-xl;
-}
-h4 {
-	@apply text-2xl;
-}
-h3 {
-	@apply text-3xl;
-}
-h2 {
-	@apply text-4xl;
-}
-h1 {
-	@apply text-5xl;
-}
-
-p {
-	@apply opacity-50;
-}
-
-section {
-	@apply mt-28 lg:mt-40;
-}
-
-.overline-style {
-	@apply text-sm text-terracotta uppercase;
-}
-
-.subtitle {
-	@apply text-xs text-terracotta uppercase;
-}
-
-.content-container {
-	@apply mx-auto px-6 sm:px-8 max-w-[1200px];
-}
-
 @layer utilities {
-  .grid-form {
-    @apply grid grid-cols-2 gap-4;
-  }
+	.overline-style {
+		@apply text-sm text-terracotta uppercase;
+	}
 
-  .focus-ring {
-    @apply rounded-sm ring-2 ring-offset-2 ring-terracotta ring-offset-off-white
-  }
+	.subtitle {
+		@apply text-xs text-terracotta uppercase;
+	}
+
+	.content-container {
+		@apply mx-auto px-6 sm:px-8 max-w-[1200px];
+	}
+
+	.grid-form {
+		@apply grid grid-cols-2 gap-4;
+	}
+
+	.focus-ring {
+		@apply rounded-sm ring-2 ring-offset-2 ring-terracotta ring-offset-off-white;
+	}
 }
 
 @layer base {
-  * {
-    @apply focus:outline-none focus-visible:focus-ring;
-  }
+	* {
+		@apply focus:outline-none focus-visible:focus-ring;
+	}
+
+	body {
+		@apply font-body text-base text-almost-black bg-off-white min-w-[20rem];
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply uppercase;
+	}
+
+	h6 {
+		@apply text-lg;
+	}
+	h5 {
+		@apply text-xl;
+	}
+	h4 {
+		@apply text-2xl;
+	}
+	h3 {
+		@apply text-3xl;
+	}
+	h2 {
+		@apply text-4xl;
+	}
+	h1 {
+		@apply text-5xl;
+	}
+
+	p {
+		@apply opacity-50;
+	}
+
+	section {
+		@apply mt-28 lg:mt-40;
+	}
 
 	input[type="number"] {
 		@apply focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
 	}
 }
-
 
 @layer components {
 	.circles {
@@ -88,15 +87,15 @@ section {
 		@apply absolute z-0 -top-[6rem] left-0 w-full h-[6rem] bg-almost-black;
 	}
 
-  .hamburger-bar {
-    @apply w-4 h-[3px] absolute left-0 bg-white block transition-all duration-300 ease-expo
-  }
+	.hamburger-bar {
+		@apply w-4 h-[3px] absolute left-0 bg-white block transition-all duration-300 ease-expo;
+	}
 
-  .hamburger-before {
-    @apply -top-[200%] origin-top-left
-  }
+	.hamburger-before {
+		@apply -top-[200%] origin-top-left;
+	}
 
-  .hamburger-after {
-    @apply -bottom-[200%] origin-bottom-left
-  }
+	.hamburger-after {
+		@apply -bottom-[200%] origin-bottom-left;
+	}
 }
