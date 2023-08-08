@@ -21,6 +21,11 @@ if (productList.value.length === 0) {
 	});
 }
 
+const loadedImg = ref(Array(productList.length).fill(false))
+const loaded = (index) => {
+  loadedImg.value[index] = true;
+}
+
 const config = useRuntimeConfig();
 const previewBaseUrl = `${config.public.supabase.url}/storage/v1/object/public/products-images`;
 
@@ -41,15 +46,25 @@ useHead({
 			</template>
 			<template #content>
 				<section
-					v-for="product in productList"
+					v-for="(product, index) in productList"
 					:key="product.id"
 					class="flex flex-col lg:flex-row lg:even:flex-row-reverse items-center justify-between gap-8 sm:gap-14 lg:gap-28 first:max-sm:mt-16"
 				>
+
+          <div
+							v-if="!loadedImg[index]"
+							class="flex justify-center w-full max-w-full h-[300px] lg:w-[33.75rem] rounded-md bg-very-light-gray"
+						>
+							<IconLoading />
+						</div>
 					<NuxtImg
+            v-show="loadedImg[index]"
 						:src="`${previewBaseUrl}/${product.images}/${device}/image-category-page-preview.jpg`"
 						alt="Product preview picture"
+            @load="loaded(index)"
 						class="lg:max-w-[33.75rem] rounded-md"
 					/>
+
 					<div
 						class="max-lg:text-center flex flex-col items-center lg:items-start sm:max-lg:px-16"
 					>

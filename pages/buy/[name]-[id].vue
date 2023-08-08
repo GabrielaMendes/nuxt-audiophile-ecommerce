@@ -82,7 +82,7 @@ useHead({
 					>
 						<div
 							v-if="loadingImg"
-							class="flex items-center justify-center flex-1 w-full max-w-full sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md"
+							class="flex items-center justify-center flex-1 w-full max-w-full h-[310px] sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md bg-very-light-gray"
 						>
 							<IconLoading />
 						</div>
