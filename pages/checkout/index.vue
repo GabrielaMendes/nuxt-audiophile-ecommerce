@@ -37,14 +37,6 @@ const grandTotal = computed(() => {
 });
 
 const payment = ref("eMoney");
-const changePayment = () => {
-	if (payment.value === "eMoney") {
-		payment.value = "cash";
-		return;
-	}
-
-	payment.value = "eMoney";
-};
 
 const checkoutForm = ref(null);
 
@@ -112,7 +104,7 @@ useHead({
 						label: 'block font-bold text-[0.75rem] mb-1',
 						message: 'text-error-red text-[0.75rem] absolute right-0',
 						input:
-							'w-full caret-terracotta text-[0.875rem] bg-off-white py-3 px-6 focus:outline-none rounded-md border border-[#CFCFCF] focus:border-terracotta',
+							'w-full caret-terracotta text-[0.875rem] bg-off-white py-3 px-6 rounded-md border border-[#CFCFCF] focus:border-terracotta focus-visible:ring-0',
 						options: 'text-[0.875rem]',
 					},
 				}"
@@ -222,12 +214,12 @@ useHead({
 								eMoney: 'e-Money',
 								cash: 'Cash on Delivery',
 							}"
-							input-class="block cursor-pointer accent-terracotta w-4 h-4 rounded-full border border-terracotta"
+							input-class="$reset block cursor-pointer accent-terracotta w-4 h-4 rounded-full focus-visible:focus-ring"
 							label-class="$reset block font-bold text-[0.875rem]"
 							wrapper-class="cursor-pointer p-3 rounded-md border border-[#CFCFCF] focus:border-terracotta hover:border-terracotta transition-colors duration-300 flex flex-reverse items-center gap-4"
 							fieldset-class="sm:grid grid-cols-2 gap-4"
 							options-class="col-start-2 flex flex-col gap-4"
-							legend-class="block sm:float-left mb-2 font-bold text-[0.75rem] mb-1 formkit-invalid:text-[#CD2C2C]"
+							legend-class="block sm:float-left mb-2 font-bold text-[0.75rem] mb-1"
 						/>
 						<div v-auto-animate="{ easing: 'ease-in-out' }">
 							<div v-if="payment === 'eMoney'" class="sm:grid-form mt-5">
@@ -327,9 +319,5 @@ useHead({
 
 [data-invalid] .formkit-label {
 	@apply text-error-red;
-}
-
-.formkit-input {
-	@apply focus-visible:ring-0;
 }
 </style>
