@@ -17,7 +17,7 @@ const backToHome = () => {
 
 const shipping = ref(50);
 const vat = computed(() => {
-  return parseInt(totalPrice.value * 0.2)
+	return parseInt(totalPrice.value * 0.2);
 });
 
 const expenses = computed(() => [
@@ -72,13 +72,25 @@ const finishOrder = async (values) => {
 	}
 };
 
+onBeforeRouteLeave((to, from, next) => {
+	if (!checkoutForm.value.node.context.state.dirty) {
+		next();
+		return;
+	}
+
+	const leave = confirm(
+		"You have unsaved changes. Are you sure you want to leave?"
+	);
+	next(leave);
+});
+
 useHead({
 	title: "Checkout | audiophile",
 });
 
 definePageMeta({
-  scrollToTop: true,
-})
+	scrollToTop: true,
+});
 </script>
 
 <template>
