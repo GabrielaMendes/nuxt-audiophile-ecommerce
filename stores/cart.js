@@ -44,6 +44,28 @@ export const useCartStore = defineStore(
 			}
 		};
 
+    const updateQty = (id, qty) => {
+      const itemIdx = cartItems.value.findIndex(
+				(item) => item.id === id
+			);
+
+      if (isNaN(qty)) {
+        return;
+      }
+
+      if (qty > 10) {
+        cartItems.value[itemIdx].qty = 10;
+        return;
+      }
+
+      if (qty < 1) {
+        removeItem(id);
+        return;
+      }
+
+      cartItems.value[itemIdx].qty = qty;
+    }
+
 		const removeAll = () => {
 			cartItems.value = [];
 		};
@@ -54,6 +76,7 @@ export const useCartStore = defineStore(
 			totalPrice,
 			addItem,
 			removeItem,
+      updateQty,
 			removeAll,
 		};
 	},
