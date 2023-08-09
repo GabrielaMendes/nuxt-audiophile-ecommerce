@@ -16,7 +16,10 @@ const backToHome = () => {
 };
 
 const shipping = ref(50);
-const vat = ref(1079);
+const vat = computed(() => {
+  return parseInt(totalPrice.value * 0.2)
+});
+
 const expenses = computed(() => [
 	{
 		name: "Total",
