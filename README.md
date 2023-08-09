@@ -1,63 +1,74 @@
-# Nuxt 3 Minimal Starter
+# Audiophile e-commerce website
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This project is a self built solution to the [Audiophile e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx).
 
-## Setup
+## Table of contents
 
-Make sure to install the dependencies:
+- [Overview](#overview)
+  - [Features](#features)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Other libraries and modules](#other-libraries-and-modules)
 
-```bash
-# npm
-npm install
+## Overview
 
-# pnpm
-pnpm install
+### Features
 
-# yarn
-yarn install
-```
+Users should be able to:
 
-## Development Server
+- View the optimal layout for the app depending on their device's screen size
+- Add/Remove products from the cart
+- Edit product quantities in the cart
+- Keep track of what's in the cart, even after refreshing the browser
+- Fill in fields in the checkout and receive form validations if fields are missed or incorrect
+- See correct checkout totals depending on the products in the cart
+  - Shipping always adds $50 to the order
+  - VAT is calculated as 20% of the product total, excluding shipping
+- See an order confirmation modal after checking out with an order summary
 
-Start the development server on `http://localhost:3000`:
+Back-end:
 
-```bash
-# npm
-npm run dev
+- Products data and pictures are fetched from remote database and storage
+- Orders are sent and registered in database
 
-# pnpm
-pnpm run dev
+### Screenshot
 
-# yarn
-yarn dev
-```
+Desktop view:
 
-## Production
+![](./screenshots/screenshot-desktop-01.png)
 
-Build the application for production:
+![](./screenshots/screenshot-desktop-02.png)
 
-```bash
-# npm
-npm run build
+Tablet view:
 
-# pnpm
-pnpm run build
+![](./screenshots/screenshot-tablet-01.png)
 
-# yarn
-yarn build
-```
+![](./screenshots/screenshot-tablet-02.png)
 
-Locally preview production build:
+Mobile view:
 
-```bash
-# npm
-npm run preview
+![](./screenshots/screenshot-mobile-01.png)
 
-# pnpm
-pnpm run preview
+![](./screenshots/screenshot-mobile-02.png)
 
-# yarn
-yarn preview
-```
+### Links
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Live Site URL: [PENDING](https://your-live-site-url.com)
+
+## My process
+
+### Built with
+
+- [Nuxt.js](https://nuxt.com/) - Web framework built on Vue.js
+- [Tailwind Css](https://tailwindcss.com/) - Css framework
+- [Prisma](https://www.prisma.io/) - Node.js ORM
+- [Supabase](https://supabase.com/) - Open source Postgres backends
+
+### Other libraries and modules
+
+- [Pinia](https://pinia.vuejs.org/) - Store for Vue.js
+- [VueUse](https://vueuse.org/) - Composition utilities
+- [Formkit](https://formkit.com/) - Form framework for Vue.js
+- [Joi](https://joi.dev/) - Data validator for JS
