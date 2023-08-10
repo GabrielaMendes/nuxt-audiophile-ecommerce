@@ -40,7 +40,7 @@ definePageMeta({
 						class="flex flex-col gap-6 justify-center max-lg:text-center max-lg:items-center max-lg:mx-auto py-32 max-w-[25rem]"
 					>
 						<p class="text-sm text-white uppercase">New Product</p>
-						<h1 class="max-sm:text-4xl">XX99 Mark II Headphones</h1>
+						<h1 class="max-sm:text-4xl animate-[pulse_3s_ease-in]">XX99 Mark II Headphones</h1>
 						<p class="max-w-[21.75rem]">
 							Experience natural, lifelike audio and exceptional build quality
 							made for the passionate music enthusiast.
@@ -53,7 +53,7 @@ definePageMeta({
 				<ThumbCards class="mt-44" />
 				<section class="flex flex-col gap-7">
 					<div
-						class="relative px-8 py-16 lg:p-28 max-lg:items-center lg:max-h-[35rem] overflow-hidden bg-terracotta text-white rounded-md w-full flex max-lg:flex-col gap-14 sm:gap-[4.5rem] lg:gap-32 after:circles hover:after:motion-safe:animate-[ping_3s_ease-in-out_infinite]"
+						class="relative px-8 py-16 lg:p-28 max-lg:items-center lg:max-h-[35rem] overflow-hidden bg-terracotta text-white rounded-md w-full flex max-lg:flex-col gap-14 sm:gap-[4.5rem] lg:gap-32 after:circles hover:after:motion-safe:animate-[ping_2s_ease-in_infinite_alternate]"
 					>
 						<NuxtImg
 							:src="`/images/home/${device}/image-speaker-zx9.png`"
