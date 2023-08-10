@@ -1,5 +1,4 @@
 <script setup>
-import { useDevice } from "@/composables/useDevice";
 import { useMotion } from "@vueuse/motion";
 
 const props = defineProps({
@@ -26,7 +25,7 @@ onMounted(() => {
 				x: 0,
 				transition: {
           delay: 200,
-					duration: 300,
+					duration: 400,
 					type: "keyframes",
 					ease: "linear",
 				},
@@ -43,7 +42,7 @@ onMounted(() => {
 				x: 0,
 				transition: {
           delay: 200,
-					duration: 300,
+					duration: 400,
 					type: "keyframes",
 					ease: "linear",
 				},
