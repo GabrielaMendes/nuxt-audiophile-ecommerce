@@ -3,30 +3,52 @@ const loadingStore = useLoadingStore();
 const { device } = useDevice();
 
 const { data: products } = await useFetchAllProducts();
-setTimeout(() => loadingStore.isLoading = false, 300)
+setTimeout(() => (loadingStore.isLoading = false), 300);
 
 const featured = ["xx99 mark ii", "zx9", "zx7", "yx1"];
 const featuredProducts = products.value.filter((product) => {
-  return featured.some((p) =>
-  product.name.toLowerCase().includes(p.toLowerCase())
+	return featured.some((p) =>
+		product.name.toLowerCase().includes(p.toLowerCase())
 	);
 });
 
 const goToProduct = (name) => {
-  const product = featuredProducts.find((p) => {
-    return p.name.toLowerCase().includes(name.toLowerCase());
+	const product = featuredProducts.find((p) => {
+		return p.name.toLowerCase().includes(name.toLowerCase());
 	});
-  
+
 	navigateTo(`/buy/${product.name}-${product.id}`);
 };
 
+// Animation
+const initialLeft = {
+	opacity: 0,
+	x: device === "mobile" ? -100 : -150,
+};
+
+const initialRight = {
+	opacity: 0,
+	x: device === "mobile" ? 100 : 150,
+};
+
+const visibleOnce = {
+	opacity: 1,
+	x: 0,
+	transition: {
+		delay: 100,
+		duration: 500,
+		type: "keyframes",
+		ease: "linear",
+	},
+};
+
 useHead({
-  title: "Home | audiophile",
+	title: "Home | audiophile",
 });
 
 definePageMeta({
-  scrollToTop: true,
-})
+	scrollToTop: true,
+});
 </script>
 
 <template>
@@ -40,7 +62,9 @@ definePageMeta({
 						class="flex flex-col gap-6 justify-center max-lg:text-center max-lg:items-center max-lg:mx-auto py-32 max-w-[25rem]"
 					>
 						<p class="text-sm text-white uppercase">New Product</p>
-						<h1 class="max-sm:text-4xl animate-[pulse_3s_ease-in]">XX99 Mark II Headphones</h1>
+						<h1 class="max-sm:text-4xl animate-[pulse_3s_ease-in]">
+							XX99 Mark II Headphones
+						</h1>
 						<p class="max-w-[21.75rem]">
 							Experience natural, lifelike audio and exceptional build quality
 							made for the passionate music enthusiast.
@@ -49,10 +73,15 @@ definePageMeta({
 					</div>
 				</div>
 			</template>
+
 			<template #content>
 				<ThumbCards class="mt-44" />
+
 				<section class="flex flex-col gap-7">
 					<div
+						v-motion
+						:initial="initialRight"
+						:visibleOnce="visibleOnce"
 						class="relative px-8 py-16 lg:p-28 max-lg:items-center lg:max-h-[35rem] overflow-hidden bg-terracotta text-white rounded-md w-full flex max-lg:flex-col gap-14 sm:gap-[4.5rem] lg:gap-32 after:circles hover:after:motion-safe:animate-[ping_2s_ease-in_infinite_alternate]"
 					>
 						<NuxtImg
@@ -73,13 +102,21 @@ definePageMeta({
 							<BaseButton :black="true" @click="goToProduct('ZX9')" />
 						</div>
 					</div>
+
 					<div
+						v-motion
+						:initial="initialLeft"
+						:visibleOnce="visibleOnce"
 						class="rounded-md w-full h-80 px-8 sm:px-24 flex flex-col justify-center bg-cover bg-[url('/images/home/mobile/image-speaker-zx7.jpg')] sm:bg-[url('/images/home/tablet/image-speaker-zx7.jpg')] lg:bg-[url('/images/home/desktop/image-speaker-zx7.jpg')]"
 					>
 						<h4 class="mb-6">ZX7 Speaker</h4>
 						<BaseButton :filled="false" @click="goToProduct('ZX7')" />
 					</div>
+
 					<div
+						v-motion
+						:initial="initialRight"
+						:visibleOnce="visibleOnce"
 						class="grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-7 sm:gap-2 lg:gap-4"
 					>
 						<NuxtImg
