@@ -73,7 +73,7 @@ const finishOrder = async (values) => {
 };
 
 onBeforeRouteLeave((to, from, next) => {
-	if (!checkoutForm.value.node.context.state.dirty) {
+	if (!checkoutForm.value || !checkoutForm.value.node.context.state.dirty) {
 		next();
 		return;
 	}
