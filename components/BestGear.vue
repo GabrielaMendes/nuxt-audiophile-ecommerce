@@ -1,14 +1,63 @@
 <script setup>
-import { useDevice } from "@/composables/useDevice"
+import { useDevice } from "@/composables/useDevice";
+import { useMotion } from "@vueuse/motion";
 
-const { device } = useDevice()
+const props = defineProps({
+	animationDisabled: {
+		type: Boolean,
+		default: false,
+	},
+});
+
+const { device } = useDevice();
+
+const text = ref(null);
+const image = ref(null);
+
+onMounted(() => {
+	if (!props.animationDisabled) {
+		useMotion(text, {
+			initial: {
+				opacity: 0,
+				x: device === "mobile" ? -100 : -150,
+			},
+			visibleOnce: {
+				opacity: 1,
+				x: 0,
+				transition: {
+          delay: 200,
+					duration: 300,
+					type: "keyframes",
+					ease: "linear",
+				},
+			},
+		});
+    
+		useMotion(image, {
+			initial: {
+				opacity: 0,
+				x: device === "mobile" ? 100 : 150,
+			},
+			visibleOnce: {
+				opacity: 1,
+				x: 0,
+				transition: {
+          delay: 200,
+					duration: 300,
+					type: "keyframes",
+					ease: "linear",
+				},
+			},
+		});
+	}
+});
 </script>
 
 <template>
 	<section
 		class="content-container mb-28 lg:mb-40 flex max-lg:flex-col-reverse items-center"
 	>
-		<div class="flex-1 sm:max-lg:px-16 lg:pr-32 max-lg:text-center">
+		<div ref="text" class="flex-1 sm:max-lg:px-16 lg:pr-32 max-lg:text-center">
 			<h2 class="mb-8 max-sm:mt-12 sm:max-lg:mt-16">
 				Bringing You The <span class="text-terracotta">Best</span> Audio Gear
 			</h2>
@@ -21,7 +70,9 @@ const { device } = useDevice()
 				to buy your portable audio equipment.
 			</p>
 		</div>
+
 		<NuxtImg
+			ref="image"
 			:src="`/images/shared/${device}/image-best-gear.jpg`"
 			alt="A guy listening to music in his headphone"
 			class="rounded-md flex-1"

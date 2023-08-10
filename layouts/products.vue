@@ -14,7 +14,7 @@
 			</section>
 		</main>
 
-		<BestGear />
+		<BestGear :animation-disabled="true" />
 	</div>
 </template>
 
