@@ -14,9 +14,10 @@ export default defineNuxtConfig({
 	modules: [
 		"@nuxtjs/tailwindcss",
 		"@vueuse/nuxt",
+		"@vueuse/motion/nuxt",
 		"@nuxt/image-edge",
 		"@formkit/nuxt",
-    "@nuxtjs/supabase",
+		"@nuxtjs/supabase",
 		[
 			"@pinia/nuxt",
 			{

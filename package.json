@@ -28,6 +28,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@prisma/client": "^5.0.0",
     "@vueuse/integrations": "^10.3.0",
+    "@vueuse/motion": "^2.0.0",
     "@vueuse/nuxt": "^10.2.1",
     "autoprefixer": "^10.4.14",
     "focus-trap": "^7.5.2",
