@@ -180,27 +180,7 @@ definePageMeta({
 				</section>
 
 				<!-- Gallery -->
-				<section class="flex justify-center max-sm:flex-col gap-6">
-					<div class="flex flex-col gap-6">
-						<NuxtImg
-							:src="`${productImgUrl}/image-gallery-1.jpg`"
-							alt="Product gallery picture"
-							class="h-full w-full overflow-hidden rounded-md"
-						/>
-						<NuxtImg
-							:src="`${productImgUrl}/image-gallery-2.jpg`"
-							alt="Product gallery picture"
-							class="h-full w-full overflow-hidden rounded-md"
-						/>
-					</div>
-					<div>
-						<NuxtImg
-							:src="`${productImgUrl}/image-gallery-3.jpg`"
-							alt="Product gallery picture"
-							class="h-full w-full overflow-hidden rounded-md"
-						/>
-					</div>
-				</section>
+				<ProductGallery :img-url="productImgUrl" />
 
 				<!-- You May Also Like -->
 				<ClientOnly placeholder="Loading...">
