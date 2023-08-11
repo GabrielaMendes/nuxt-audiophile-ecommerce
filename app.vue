@@ -50,4 +50,13 @@ useHead(() => {
 .page-leave-to {
 	@apply opacity-0 blur-lg;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+	@apply transition-opacity duration-200;
+}
+.fade-enter-from,
+.fade-leave-to {
+	@apply opacity-0;
+}
 </style>
