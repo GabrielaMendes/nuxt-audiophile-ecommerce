@@ -1,7 +1,9 @@
 <script setup>
-defineProps({
+const props = defineProps({
 	grandTotal: Number,
 });
+
+const { grandTotal } = props;
 
 const emit = defineEmits(["backToHome"])
 
@@ -39,7 +41,7 @@ const goBackHome = () => {
 				<p>You will recieve an email confirmation shortly.</p>
 
 				<div
-					class="flex items-stretch max-sm:flex-col rounded-lg bg-very-light-gray overflow-x-hidden"
+					class="flex items-stretch max-sm:flex-col rounded-lg bg-very-light-gray overflow-hidden"
 				>
 					<!-- Items -->
 					<div class="px-7 pb-4 w-full flex flex-col justify-center">
