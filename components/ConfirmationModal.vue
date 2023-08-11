@@ -32,7 +32,9 @@ const goBackHome = () => {
 			class="w-full max-h-[80%] rounded-lg overflow-y-auto bg-off-white content-container p-8"
 		>
 			<div class="flex flex-col gap-6 sm:gap-9">
-				<IconConfirmation />
+				<IconConfirmation
+          class="animate-inflate"
+        />
 				<h3 class="max-sm:text-xl">Thank you<br />for your order</h3>
 				<p>You will recieve an email confirmation shortly.</p>
 

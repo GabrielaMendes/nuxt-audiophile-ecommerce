@@ -125,6 +125,16 @@ module.exports = {
 			transitionTimingFunction: {
 				expo: "cubic-bezier(1, 0, 0, 1)",
 			},
+			keyframes: {
+				inflate: {
+					"0%": { transform: "scale(0.5)", opacity: "0" },
+					"50%": { transform: "scale(1.3)", opacity: "1" },
+					"100%": { transform: "scale(1)", opacity: "1" },
+				},
+			},
+			animation: {
+				inflate: "inflate 1.2s ease-in-out",
+			},
 		},
 	},
 	plugins: [rotateZ],
