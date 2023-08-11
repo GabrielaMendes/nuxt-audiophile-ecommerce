@@ -319,12 +319,7 @@ definePageMeta({
 		</NuxtLayout>
 
 		<Teleport to="body">
-			<transition
-				enter-from-class="opacity-0"
-				enter-active-class="transition-opacity duration-200"
-				leave-active-class="transition-opacity duration-200"
-				leave-to-class="opacity-0"
-			>
+			<transition name="fade">
 				<UseFocusTrap v-if="finish">
 					<BaseOverlay>
 						<ConfirmationModal
