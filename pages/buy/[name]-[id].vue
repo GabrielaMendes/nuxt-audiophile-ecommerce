@@ -1,21 +1,21 @@
 <script setup>
+const route = useRoute();
+const { data: product } = await useFetchProduct(route.params.id);
+
+const loadingStore = useLoadingStore();
+setTimeout(() => (loadingStore.isLoading = false), 300);
+
 const { device } = useDevice();
 const { addItem } = useCartStore();
-const loadingStore = useLoadingStore();
 
 const config = useRuntimeConfig();
-const route = useRoute();
 
 const confirmMessage = ref(false);
 const maxMessage = ref(false);
 
-const { data: product } = await useFetchProduct(route.params.id);
-
 if (product.value.name !== route.params.name) {
-  navigateTo(`buy/${product.value.name}-${product.value.id}`)
+	navigateTo(`buy/${product.value.name}-${product.value.id}`);
 }
-
-setTimeout(() => loadingStore.isLoading = false, 300)
 
 const productImgUrl = computed(() => {
 	return `${config.public.supabase.url}/storage/v1/object/public/products-images/${product.value.images}/${device.value}`;
@@ -69,8 +69,8 @@ useHead({
 });
 
 definePageMeta({
-  scrollToTop: true,
-})
+	scrollToTop: true,
+});
 </script>
 
 <template>
@@ -90,14 +90,16 @@ definePageMeta({
 						>
 							<IconLoading />
 						</div>
-						
-            <NuxtImg
-							v-show="!loadingImg"
-							:src="`${productImgUrl}/image-product.jpg`"
-							alt="Product picture"
-							class="flex-1 w-full max-w-full sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md"
-							@load="onImgLoad"
-						/>
+
+						<transition name="fade">
+							<NuxtImg
+								v-show="!loadingImg"
+								:src="`${productImgUrl}/image-product.jpg`"
+								alt="Product picture"
+								class="flex-1 w-full max-w-full sm:min-w-[17rem] sm:w-6 lg:min-w-[29rem] lg:w-[33.75rem] rounded-md"
+								@load="onImgLoad"
+							/>
+						</transition>
 
 						<div class="relative flex-1 flex flex-col items-start">
 							<h6 v-if="product.new" class="overline-style mb-4">
