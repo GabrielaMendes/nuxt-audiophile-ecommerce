@@ -1,42 +1,42 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxtjs/google-fonts": "^3.0.1",
-    "@nuxtjs/supabase": "^0.3.8",
-    "@types/node": "^18",
-    "nuxt": "^3.6.1"
-  },
-  "dependencies": {
-    "@formkit/addons": "^0.17.5",
-    "@formkit/nuxt": "^0.17.4",
-    "@formkit/themes": "^0.17.5",
-    "@nuxt/image-edge": "^1.0.0-rc.1-28143901.afe4120",
-    "@nuxtjs/tailwindcss": "^6.8.0",
-    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
-    "@pinia/nuxt": "^0.4.11",
-    "@prisma/client": "^5.0.0",
-    "@vueuse/integrations": "^10.3.0",
-    "@vueuse/motion": "^2.0.0",
-    "@vueuse/nuxt": "^10.2.1",
-    "autoprefixer": "^10.4.14",
-    "focus-trap": "^7.5.2",
-    "joi": "^17.9.2",
-    "maska": "^2.1.9",
-    "pinia": "^2.1.4",
-    "postcss": "^8.4.24",
-    "prisma": "^5.0.0"
-  }
+	"name": "nuxt-app",
+	"private": true,
+	"scripts": {
+		"build": "prisma generate && nuxt build",
+		"start": "nuxt start",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare && prisma generate"
+	},
+	"prisma": {
+		"seed": "node prisma/seed.js"
+	},
+	"devDependencies": {
+		"@nuxt/devtools": "latest",
+		"@nuxtjs/google-fonts": "^3.0.1",
+		"@nuxtjs/supabase": "^0.3.8",
+		"@types/node": "^18",
+		"nuxt": "^3.6.1"
+	},
+	"dependencies": {
+		"@formkit/addons": "^0.17.5",
+		"@formkit/nuxt": "^0.17.4",
+		"@formkit/themes": "^0.17.5",
+		"@nuxt/image-edge": "^1.0.0-rc.1-28143901.afe4120",
+		"@nuxtjs/tailwindcss": "^6.8.0",
+		"@pinia-plugin-persistedstate/nuxt": "^1.1.1",
+		"@pinia/nuxt": "^0.4.11",
+		"@prisma/client": "^5.0.0",
+		"@vueuse/integrations": "^10.3.0",
+		"@vueuse/motion": "^2.0.0",
+		"@vueuse/nuxt": "^10.2.1",
+		"autoprefixer": "^10.4.14",
+		"focus-trap": "^7.5.2",
+		"joi": "^17.9.2",
+		"maska": "^2.1.9",
+		"pinia": "^2.1.4",
+		"postcss": "^8.4.24",
+		"prisma": "^5.0.0"
+	}
 }
