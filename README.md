@@ -55,7 +55,7 @@ Mobile view:
 
 ### Links
 
-- Live Site URL: [PENDING](https://your-live-site-url.com)
+- Live Site URL: [audiophile](https://nuxt-audiophile-ecommerce.vercel.app/)
 
 ## My process
 
