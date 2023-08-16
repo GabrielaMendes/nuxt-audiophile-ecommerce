@@ -30,7 +30,7 @@
 	}
 
 	body {
-		@apply font-body text-base text-almost-black bg-off-white min-w-[20rem];
+		@apply font-body text-base text-almost-black bg-off-white min-w-[20rem] w-screen;
 	}
 
 	h1,
@@ -65,8 +65,12 @@
 		@apply opacity-50;
 	}
 
+  main {
+    @apply overflow-x-hidden
+  }
+
 	section {
-		@apply mt-28 lg:mt-40;
+		@apply mt-28 lg:mt-40 overflow-x-hidden;
 	}
 
 	input[type="number"] {

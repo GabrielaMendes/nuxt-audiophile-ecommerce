@@ -17,7 +17,7 @@ watch(
 useHead(() => {
 	return {
 		bodyAttrs: {
-			class: scrollStore.scrollLock ? "overflow-hidden" : "[overflow:overlay]",
+			class: scrollStore.scrollLock ? "overflow-y-hidden" : "[overflow-y:overlay]",
 		},
 	};
 });
