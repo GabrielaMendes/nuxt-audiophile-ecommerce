@@ -54,7 +54,7 @@ onMounted(() => {
 
 <template>
 	<section
-		class="content-container mb-28 lg:mb-40 flex max-lg:flex-col-reverse items-center"
+		class="content-container mb-28 lg:mb-40 flex max-lg:flex-col-reverse items-center overflow-x-hidden"
 	>
 		<div ref="text" class="flex-1 sm:max-lg:px-16 lg:pr-32 max-lg:text-center">
 			<h2 class="mb-8 max-sm:mt-12 sm:max-lg:mt-16">

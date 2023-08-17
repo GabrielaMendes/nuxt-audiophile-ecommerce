@@ -70,7 +70,7 @@
   }
 
 	section {
-		@apply mt-28 lg:mt-40 overflow-x-hidden;
+		@apply mt-28 lg:mt-40;
 	}
 
 	input[type="number"] {
