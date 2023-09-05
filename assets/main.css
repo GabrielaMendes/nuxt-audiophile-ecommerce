@@ -65,9 +65,9 @@
 		@apply opacity-50;
 	}
 
-  main {
-    @apply overflow-x-hidden
-  }
+	main {
+		@apply overflow-x-clip;
+	}
 
 	section {
 		@apply mt-28 lg:mt-40;
